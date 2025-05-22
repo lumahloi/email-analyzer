@@ -19,6 +19,7 @@ $(function () {
     }
 
     $("#result").html("Carregando...");
+
     var formData = new FormData();
     formData.append("file", $("#input-file")[0].files[0]);
 
@@ -30,21 +31,38 @@ $(function () {
       contentType: false,
       success: (response) => {
         if (!Array.isArray(response) || response.length === 0) {
-          $("#result").html("Nenhum resultado retornado.");
+          showAlert("Nenhum resultado retornado.", "warning");
           return;
         }
 
         let resultHtml = "";
 
+        resultHtml += `
+          <thead>
+            <tr>
+              <th scope="col">Ordem</th>
+              <th scope="col">Conteúdo</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Resposta sugerida</th>
+            </tr>
+          </thead>
+          <tbody>
+        `;
+
         response.forEach((item, index) => {
           resultHtml += `
-            <div class="mb-3">
-              <strong>Email ${index + 1}:</strong><br>
-              Categoria: ${item.category}<br>
-              Resposta: ${item.response || "---"}
-            </div>
+            <tr>
+              <td>${index + 1}</td>
+              <td>${item.content}</td>
+              <td>${item.category}</td>
+              <td>${item.response || "---"}</td>
+            </tr>
           `;
         });
+
+        resultHtml += `
+          </tbody>
+        `;
 
         $("#result").html(resultHtml);
       },
