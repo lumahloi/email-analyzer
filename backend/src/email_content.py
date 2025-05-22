@@ -1,7 +1,7 @@
 from pypdf import PdfReader
 import re
 
-def email_content(file):
+def email_content_pdf(file):
     reader = PdfReader(file)
     
     all_bodies = []

@@ -1,6 +1,6 @@
 from generate_response import generate_response
 from predict_category import predict_category
-from email_content import email_content
+from email_content import email_content_pdf
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -22,7 +22,7 @@ def handle_query():
         if file.filename == '':
             return jsonify({'error': 'Nome do arquivo vazio.'}), 400
         
-        content = email_content(file)
+        content = email_content_pdf(file)
         
         category = predict_category(content)
         
