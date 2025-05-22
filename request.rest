@@ -1,0 +1,4 @@
+POST http://127.0.0.1:5000/api/submit
+Content-Type: application/json
+
+{ "email": "odeio esse banco" }
