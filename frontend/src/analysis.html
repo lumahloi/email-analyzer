@@ -29,7 +29,7 @@
     </nav>
 
     <div class="container-fluid bg-light p-5 shadow-sm">
-      <h2 class="fw-bold text-center">Insira seu arquivo de e-mails</h2>
+      <h2 class="fw-bold text-center">Analisar outro arquivo</h2>
       <p class="text-body-secondary text-center">Só aceitamos arquivos <span class="font-monospace">.txt</span></p>
 
       <div class="row justify-content-center align-items-end mt-5">
@@ -43,44 +43,8 @@
 
     </div>
 
-    <div class="container-fluid">
-      <table id="result" class="table table-striped table-hover"></table>
-    </div>
-
     <div class="container-fluid bg-light p-5 shadow-sm mt-5">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-          <p>
-            Você já se sentiu sobrecarregada(o) com uma caixa de entrada cheia de e-mails? Pensando nisso, desenvolvi
-            uma
-            aplicação inteligente que automatiza a triagem e resposta de e-mails, oferecendo uma solução prática para
-            aumentar a produtividade.
-          </p>
-          <h4 class="fw-bold">🧠 Como funciona?</h4>
-          <p>
-            A aplicação recebe um arquivo <span class="font-monospace">.txt</span> contendo diversos e-mails. A partir
-            desse
-            conteúdo, ela realiza três tarefas principais:
-          </p>
-          <ol>
-            <li>Leitura e análise do conteúdo de cada e-mail</li>
-            <li>Classificação automática dos e-mails em duas categorias:
-              <ul>
-                <li><span class="fw-bold">Produtivo</span>: requer atenção ou ação</li>
-                <li><span class="fw-bold">Improdutivo</span>: irrelevante ou sem valor prático</li>
-              </ul>
-            </li>
-            <li>Geração de resposta automática para e-mails considerados produtivos, economizando tempo e facilitando a
-              comunicação.
-            </li>
-          </ol>
-          <p>
-            Com este projeto, trago uma ferramenta que combina inteligência artificial e automação, oferecendo mais foco
-            no que realmente importa.
-          </p>
-          <p>Teste agora mesmo inserindo um arquivo <span class="font-monospace">.txt</span> na opção acima!</p>
-        </div>
-      </div>
+      <table id="result" class="table table-hover table-striped table-transparent"></table>
     </div>
 
     <nav class="navbar navbar-expand-lg mt-4 mb-3">
@@ -131,6 +95,7 @@
 
   <script src="./components.js"></script>
   <script src="./analyzer.js"></script>
+  <script src="./analysis.js"></script>
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"

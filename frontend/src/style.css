@@ -1,0 +1,27 @@
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.btn-grow:hover {
+  animation: growHover 0.3s ease-in-out forwards;
+}
+
+@keyframes growHover {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.table-transparent {
+  --bs-table-bg: transparent !important;
+}
+  
+.table-transparent td,
+.table-transparent th {
+  --bs-table-bg: transparent !important;
+  background-color: transparent !important;
+}
