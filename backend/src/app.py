@@ -33,7 +33,7 @@ def handle_query():
             return response, 200
         
         # response = jsonify({'response': generate_response(content), 'category': category})
-        response = jsonify({'category': category})
+        response = jsonify({'category': category, 'content': content})
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
         response.headers.add('Access-Control-Allow-Origin', '*')
         
