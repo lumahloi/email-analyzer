@@ -1,0 +1,577 @@
+[
+    {
+      "Assunto": "Solicitação de troca de e-mail cadastrado",
+      "Corpo": "Oi, preciso atualizar meu e-mail de cadastro. Como posso fazer isso?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Status da análise de crédito",
+      "Corpo": "Bom dia, gostaria de saber em que etapa está a análise do meu pedido de crédito. Poderia me informar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Envio de documentação complementar",
+      "Corpo": "Segue em anexo os documentos solicitados para abertura de conta. Por favor, confirmem o recebimento.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre taxas de investimento",
+      "Corpo": "Olá, tenho uma dúvida sobre as taxas aplicadas ao meu último investimento. Podem esclarecer?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com acesso à plataforma",
+      "Corpo": "Estou com dificuldades para acessar minha conta no sistema. Alguém pode me ajudar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de reunião agendada",
+      "Corpo": "Gostaria de confirmar a reunião marcada para amanhã às 15h. Está tudo certo?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de extrato bancário",
+      "Corpo": "Preciso do extrato dos últimos 3 meses da minha conta corrente. Como posso obtê-lo?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro na fatura do cartão",
+      "Corpo": "Identifiquei uma cobrança indevida na minha fatura. Como proceder para corrigir?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Atualização de dados cadastrais",
+      "Corpo": "Preciso atualizar meu endereço no sistema. Qual o procedimento?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre limites de saque",
+      "Corpo": "Qual o limite diário para saques no meu plano?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Feliz Natal!",
+      "Corpo": "Desejo a todos um Feliz Natal e um próspero Ano Novo!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para evento setorial",
+      "Corpo": "Olá, estamos organizando um evento sobre fintechs. Gostaria de participar?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Pesquisa de satisfação",
+      "Corpo": "Como você avalia nosso atendimento nos últimos 3 meses? (1 a 5)",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado interno: Feriado bancário",
+      "Corpo": "Informamos que na próxima segunda-feira não haverá expediente devido ao feriado.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Boas-vindas ao novo colaborador",
+      "Corpo": "Seja bem-vindo ao time! Estamos felizes com sua chegada.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Lembrete: Reunião de equipe",
+      "Corpo": "Amanhã teremos nossa reunião semanal às 10h. Não se atrase!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pelo aniversário!",
+      "Corpo": "Feliz aniversário! Muitas felicidades!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para café da manhã",
+      "Corpo": "Vamos tomar um café amanhã para discutir ideias?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: Novos cursos disponíveis",
+      "Corpo": "Confira os novos cursos de capacitação disponíveis na plataforma.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de manutenção programada",
+      "Corpo": "O sistema ficará indisponível neste sábado para manutenção.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Solicitação de reembolso",
+      "Corpo": "Preciso solicitar o reembolso de uma transação não autorizada. Qual o procedimento?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre investimento em CDB",
+      "Corpo": "Gostaria de entender melhor as condições do CDB que oferecem. Podem explicar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com transferência TED",
+      "Corpo": "Realizei uma transferência, mas o valor não caiu na conta destino. O que fazer?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de aumento de limite",
+      "Corpo": "Gostaria de solicitar um aumento no limite do meu cartão. Como proceder?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre seguros",
+      "Corpo": "Quais são as opções de seguro para minha conta?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro no aplicativo móvel",
+      "Corpo": "O app está travando ao tentar acessar o extrato. Há alguma solução?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de segunda via do cartão",
+      "Corpo": "Perdi meu cartão. Como solicitar uma segunda via?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre taxa de juros",
+      "Corpo": "Qual a taxa de juros aplicada ao empréstimo pessoal?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de depósito",
+      "Corpo": "Realizei um depósito hoje. Podem confirmar o crédito?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de encerramento de conta",
+      "Corpo": "Gostaria de encerrar minha conta corrente. Qual o processo?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Feliz Ano Novo!",
+      "Corpo": "Desejo a todos um excelente 2025!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para webinar",
+      "Corpo": "Participe do nosso webinar sobre investimentos sustentáveis!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Agradecimento pelo atendimento",
+      "Corpo": "Obrigado pelo excelente suporte na última semana!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: Promoção especial",
+      "Corpo": "Aproveite nossa promoção de taxas reduzidas para portabilidade!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de atraso",
+      "Corpo": "Devido a um imprevisto, chegarei 15 minutos atrasado à reunião.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para happy hour",
+      "Corpo": "Vamos celebrar o fechamento do trimestre com um happy hour!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Pesquisa de clima organizacional",
+      "Corpo": "Responda nossa pesquisa sobre o ambiente de trabalho.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado sobre home office",
+      "Corpo": "Lembramos que às sextas-feiras o trabalho é remoto.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pelo projeto!",
+      "Corpo": "Parabéns pelo lançamento bem-sucedido do novo sistema!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Solicitação de proposta comercial",
+      "Corpo": "Gostaria de receber uma proposta para serviços de consultoria financeira.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre liquidez de investimento",
+      "Corpo": "Qual o prazo para resgate do meu investimento em LCI?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com débito automático",
+      "Corpo": "Uma conta foi debitada incorretamente. Como resolver?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de cópia de contrato",
+      "Corpo": "Preciso de uma cópia do meu contrato de empréstimo. Como obtenho?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre portabilidade de crédito",
+      "Corpo": "Quais as condições para transferir meu empréstimo para outra instituição?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro no saldo da conta",
+      "Corpo": "Meu saldo está divergente. Podem verificar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de contato do gerente",
+      "Corpo": "Preciso falar com meu gerente. Podem me passar o contato?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre imposto de renda",
+      "Corpo": "Quais investimentos são isentos de IR este ano?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de pagamento",
+      "Corpo": "Paguei um boleto hoje. Podem confirmar o recebimento?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de mudança de plano",
+      "Corpo": "Quero migrar para um plano com tarifas reduzidas. Como faço?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Boas festas!",
+      "Corpo": "Desejo a todos um ótimo fim de ano!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para palestra",
+      "Corpo": "Participe da nossa palestra sobre educação financeira!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Feedback sobre novo sistema",
+      "Corpo": "O que você achou da nova interface do internet banking?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de ausência",
+      "Corpo": "Estarei de férias na próxima semana. Qualquer urgência, falar com meu substituto.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: E-book gratuito",
+      "Corpo": "Baixe nosso e-book sobre planejamento financeiro!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pela promoção!",
+      "Corpo": "Parabéns pela sua nova posição na empresa!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Lembrete: Prazos do projeto",
+      "Corpo": "Lembrando que o prazo para entrega da análise é sexta-feira.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para almoço de negócios",
+      "Corpo": "Vamos almoçar na próxima terça para discutir parcerias?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado sobre dress code",
+      "Corpo": "Lembramos que às quartas-feiras o traje é casual.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Solicitação de relatório mensal",
+      "Corpo": "Preciso do relatório de movimentação da minha conta no mês passado.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre cobrança de tarifa",
+      "Corpo": "Fui cobrado por uma tarifa que não reconheço. Podem explicar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com token digital",
+      "Corpo": "Meu token não está gerando códigos válidos. O que fazer?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de liberação de crédito",
+      "Corpo": "Preciso de liberação emergencial de crédito. Como proceder?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre fundos de investimento",
+      "Corpo": "Quais são os fundos disponíveis para perfil conservador?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro no cadastro de beneficiário",
+      "Corpo": "Não consigo cadastrar um novo beneficiário para transferência. Há algum problema?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de revisão de taxa",
+      "Corpo": "Gostaria de pedir revisão da taxa de juros do meu empréstimo.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre resgate antecipado",
+      "Corpo": "Qual a penalidade por resgatar meu investimento antes do vencimento?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de agendamento",
+      "Corpo": "Agendei um horário no app para amanhã. Está confirmado?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de cartão adicional",
+      "Corpo": "Quero solicitar um cartão adicional para meu cônjuge. Qual o processo?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Feliz Páscoa!",
+      "Corpo": "Desejo a todos uma Feliz Páscoa!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para workshop",
+      "Corpo": "Participe do nosso workshop sobre criptomoedas!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Pesquisa de novos produtos",
+      "Corpo": "Qual tipo de investimento você gostaria que oferecêssemos?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de sistema instável",
+      "Corpo": "O sistema pode apresentar instabilidades hoje devido a atualizações.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: Blog da empresa",
+      "Corpo": "Confira as novas postagens no nosso blog sobre finanças!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pelo aniversário de empresa",
+      "Corpo": "Feliz aniversário para nossa instituição! 20 anos de sucesso!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Lembrete: Treinamento obrigatório",
+      "Corpo": "Não se esqueça do treinamento de compliance amanhã às 10h.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para café da tarde",
+      "Corpo": "Vamos tomar um café para discutir melhorias no processo?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado sobre premiação",
+      "Corpo": "Parabéns ao time por bater a meta do trimestre!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Solicitação de renegociação",
+      "Corpo": "Preciso renegociar minhas dívidas. Podem me ajudar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre rendimento da poupança",
+      "Corpo": "Como está o rendimento da poupança este mês?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com Pix agendado",
+      "Corpo": "Um Pix agendado não foi executado. O que aconteceu?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de comprovante",
+      "Corpo": "Preciso do comprovante de uma transferência realizada ontem.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre seguros residenciais",
+      "Corpo": "Quais as coberturas do seguro residencial que oferecem?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro no cálculo de juros",
+      "Corpo": "Os juros da minha última fatura parecem incorretos. Podem verificar?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de cancelamento de serviço",
+      "Corpo": "Quero cancelar o seguro desemprego vinculado à minha conta. Como faço?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre cobrança de anuidade",
+      "Corpo": "Fui cobrado pela anuidade do cartão, mas isenção estava vigente. Como resolver?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de TED recebida",
+      "Corpo": "Recebi uma TED hoje. Podem confirmar os dados do remetente?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de mudança de titularidade",
+      "Corpo": "Preciso transferir a titularidade da minha conta. Qual o procedimento?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Agradecimento por parceria",
+      "Corpo": "Agradeço pela parceria e pelo excelente atendimento!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para feira financeira",
+      "Corpo": "Visite nosso estande na Feira Financeira Internacional!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Pesquisa de mercado",
+      "Corpo": "Qual seu principal critério na escolha de um banco?",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de feriado prolongado",
+      "Corpo": "Lembramos que na próxima semana teremos ponto facultativo na quinta.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: Podcast da empresa",
+      "Corpo": "Ouça nosso novo episódio sobre investimentos sustentáveis!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pelo desempenho",
+      "Corpo": "Parabéns ao time por superar as expectativas no último trimestre!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Lembrete: Envio de relatórios",
+      "Corpo": "O prazo para envio dos relatórios trimestrais é sexta-feira.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para evento beneficente",
+      "Corpo": "Participe da nossa campanha de doação para instituições carentes!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado sobre política de home office",
+      "Corpo": "A partir do próximo mês, o home office será flexível.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Solicitação de análise de crédito",
+      "Corpo": "Gostaria de solicitar uma nova análise de crédito para ampliação de limite.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre fundo DI",
+      "Corpo": "Qual a rentabilidade do fundo DI nos últimos 12 meses?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema com boleto registrado",
+      "Corpo": "Um boleto que paguei ainda consta como pendente. Como resolver?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de declaração de IR",
+      "Corpo": "Preciso da declaração de imposto de renda referente ao ano passado.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Consulta sobre consórcio",
+      "Corpo": "Quais as condições para adquirir uma cota de consórcio imobiliário?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro no app de investimentos",
+      "Corpo": "O saldo do meu investimento não está aparecendo corretamente. O que fazer?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de isenção de tarifa",
+      "Corpo": "Gostaria de solicitar isenção da tarifa mensal. Qual o critério?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Dúvida sobre liquidação de dívida",
+      "Corpo": "Qual o valor para quitar meu empréstimo com desconto?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de agendamento de TED",
+      "Corpo": "Agendei uma TED para amanhã. Está tudo certo?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Solicitação de cartão corporativo",
+      "Corpo": "Preciso solicitar um cartão corporativo para viagem. Como proceder?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Boas-vindas ao novo cliente",
+      "Corpo": "Seja bem-vindo! Estamos à disposição para qualquer dúvida.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para palestra sobre finanças",
+      "Corpo": "Participe da nossa palestra sobre planejamento para aposentadoria!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Feedback sobre atendimento",
+      "Corpo": "Como você avalia o atendimento recebido hoje? (1 a 5)",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Aviso de licença médica",
+      "Corpo": "Informo que estarei afastado por motivos de saúde na próxima semana.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Divulgação: Guia de investimentos",
+      "Corpo": "Confira nosso guia completo para iniciantes em investimentos!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Parabéns pelo prêmio recebido",
+      "Corpo": "Parabéns pelo prêmio de Melhor Instituição Financeira do ano!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Lembrete: Entrega de metas",
+      "Corpo": "O prazo para entrega das metas individuais é até sexta-feira.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Convite para almoço de confraternização",
+      "Corpo": "Vamos almoçar juntos para celebrar os resultados do trimestre!",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Comunicado sobre mudança de endereço",
+      "Corpo": "Informamos que nossa agência mudará de endereço no próximo mês.",
+      "Categoria": "Improdutivo"
+    }
+]
