@@ -1,0 +1,47 @@
+=== E-mail 1 (Gmail) ===
+Lumah Pereira <lumah.pereira26@gmail.com> Thu, May 22, 2025 at 12:00 AM
+To: Lumah Pereira <lumah.pereira26@gmail.com>
+Olá, gostaria de saber o andamento do meu processo #12345.
+Preciso dessa informação para planejar meus próximos passos.
+Agradeço desde já pela atenção.
+
+=== E-mail 2 (Outlook) ===
+De: Secretaria de Tecnologia <informe.stic@mprj.mp.br>
+Data: Qua, 21/05/2025 16:35
+Para: Todos os Usuários <usuarios@empresa.com.br>
+Assunto: Manutenção do sistema PJe
+
+Informamos que haverá uma manutenção programada no dia 25/05/2025
+das 21h às 23h. Durante este período, o sistema ficará indisponível.
+
+=== E-mail 3 (Corporate) ===
+From: Recursos Humanos <rh@empresa.com>
+Sent: Tuesday, May 20, 2025 9:15 AM
+To: Funcionários <todos@empresa.com>
+Subject: Atualização de Benefícios
+
+Prezados,
+Estamos atualizando nosso pacote de benefícios. As principais mudanças incluem:
+- Novo plano de saúde
+- Horário flexível ampliado
+- Programa de home office
+
+=== E-mail 4 (Apple Mail) ===
+On May 19, 2025, at 3:47 PM, João Silva <joao.silva@icloud.com> wrote:
+To: Equipe Projeto X <projetox@empresa.com>
+
+Pessoal,
+Conforme discutido na reunião, segue o cronograma revisado:
+1. Fase 1 - 01/06
+2. Fase 2 - 15/06
+3. Entrega Final - 30/06
+
+=== E-mail 5 (Yahoo) ===
+From: "Suporte Yahoo" <suporte@yahoo.com>
+Date: Mon, 18 May 2025 11:30:00 -0300
+Subject: Atualização de Segurança
+
+Prezado usuário,
+Detectamos um acesso não autorizado à sua conta. Por favor:
+1. Altere sua senha imediatamente
+2. Verifique suas configurações de segurança
