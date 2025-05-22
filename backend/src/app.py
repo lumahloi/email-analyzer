@@ -15,12 +15,12 @@ CORS(app, resources={r"/api/*": {
 def handle_query():
     try:
         if 'file' not in request.files:
-            return jsonify({'error': 'Arquivo TXT não fornecido.'}), 400
+            return jsonify({'error': 'Arquivo TXT não fornecido, tente novamente.'}), 400
 
         file = request.files['file']
 
         if file.filename == '':
-            return jsonify({'error': 'Nome do arquivo vazio.'}), 400
+            return jsonify({'error': 'Nome do arquivo vazio, tente novamente.'}), 400
 
         contents = content_txt(file)
 
@@ -42,5 +42,4 @@ def handle_query():
         return response, 200
 
     except Exception as e:
-        print(e)
         return jsonify({'error': 'Erro interno do servidor.'}), 500
