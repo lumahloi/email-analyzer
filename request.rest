@@ -1,4 +1,9 @@
 POST http://127.0.0.1:5000/api/submit
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=boundary
 
-{ "email": "odeio esse banco" }
+--boundary
+Content-Disposition: form-data; name="file"; filename="email.pdf"
+Content-Type: application/pdf
+
+< ./backend/src/email.pdf
+--boundary--

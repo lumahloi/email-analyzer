@@ -1,22 +1,19 @@
 $.getJSON('config.json', function(config) {
   $(function() {
     $("#submit-btn").click(function(){
-      var email = $("#input-query").val();
-  
       $("#result").html("Carregando...");
+      var formData = new FormData();
+      formData.append('file', $('#input-file')[0].files[0]);
   
       $.ajax({
         type: "POST",
         url: config.BACKEND_URL,
-        data: JSON.stringify({ email: email }),
-        contentType: "application/json",
+        data: formData,
+        processData: false,
+        contentType: false,
         success: (response) => {
           var result = "Categoria: " + response.category + " Resposta: " + (response.response || "");
           $("#result").html(result);
-  
-          console.log(response.category);
-          console.log(response.response);
-          console.log(result);
         },
         error: (xhr, status, error) => {
           console.log(xhr.responseText);
