@@ -1,6 +1,6 @@
 from generate_response import generate_response
 from predict_category import predict_category
-from email_content import email_content_pdf
+from email_content import content_txt
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -15,27 +15,26 @@ CORS(app, resources={r"/api/*": {
 def handle_query():
     try:
         if 'file' not in request.files:
-            return jsonify({'error': 'Arquivo PDF não fornecido.'}), 400
+            return jsonify({'error': 'Arquivo TXT não fornecido.'}), 400
 
         file = request.files['file']
 
         if file.filename == '':
             return jsonify({'error': 'Nome do arquivo vazio.'}), 400
 
-        contents = email_content_pdf(file)
+        contents = content_txt(file)
 
         response_data = []
         
         for content in contents:
             category = predict_category(content)
-            response_data.append({
-                'category': category
-            })
-            
+            item = {
+                'category': category,
+            }
             if category == "Produtivo":
-                response_data.append({
-                    'response': generate_response(content)
-            })
+                # item['response'] = generate_response(content)
+                item['response'] = 'a'
+            response_data.append(item)
 
         response = jsonify(response_data)
         response.headers.add('Access-Control-Allow-Headers', 'Content-Type')

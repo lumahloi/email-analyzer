@@ -1,50 +1,32 @@
-from pypdf import PdfReader
 import re
 
-def email_content_pdf(file):
-    #TODO: email across pages
+def content_txt(file):
+    # Lê o conteúdo do arquivo TXT
+    text_content = file.read().decode('utf-8')
     
-    reader = PdfReader(file)
+    # Divide o texto em e-mails individuais usando os delimitadores ===
+    raw_emails = re.split(r'=== E-mail \d+ \(.*?\) ===', text_content)
     
-    full_text = ""
-
-    for page in reader.pages:
-        text = page.extract_text()
-        
-        if text:
-            full_text += "\n" + text
-
-    if not full_text:
-        return []
-
-    email_blocks = re.split(
-        r"(?=^[^\n]+<[^>]+>\s+\w{3},\s+\w{3}\s+\d{1,2},\s+\d{4}\s+at\s+\d{1,2}:\d{2}\s+[AP]M\s*\nTo:\s+[^\n]+<[^>]+>)",
-        full_text,
-        flags=re.MULTILINE
-    )
-
-    results = []
-
-    for block in email_blocks:
-        
-        block = block.strip()
-        
-        if not block:
+    emails = []
+    
+    for email in raw_emails:
+        email = email.strip()
+        if not email:
             continue
-
-        if not re.match(r"^[^\n]+<[^>]+>\s+\w{3},\s+\w{3}\s+\d{1,2},\s+\d{4}\s+at\s+\d{1,2}:\d{2}\s+[AP]M", block, re.MULTILINE):
-            continue
-
-        match = re.search(
-            r"^.*To:\s+[^\n]+<[^>]+>\s*(.*?)(?=\s*Gmail\s*-|$)",
-            block,
-            flags=re.DOTALL
+            
+        # Remove metadados do cabeçalho (From, To, Date, etc.)
+        # Padrão para remover linhas que começam com campos de metadados comuns
+        email = re.sub(
+            r'^(From:|De:|To:|Para:|Date:|Data:|Sent:|Assunto:|Subject:).*$',
+            '',
+            email,
+            flags=re.MULTILINE
         )
         
-        if match:
-            content = match.group(1).strip()
-            
-            if content:
-                results.append(content)
-
-    return results
+        # Remove linhas vazias e espaços extras
+        email = '\n'.join([line.strip() for line in email.splitlines() if line.strip()])
+        
+        if email:
+            emails.append(email)
+    
+    return emails
