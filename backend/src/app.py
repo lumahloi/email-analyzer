@@ -7,12 +7,13 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/api/*": {
     "allow_headers": ["Content-Type", "Access-Control-Allow-Headers", "Access-Control-Allow-Origin"],
-    "allow_methods": ["POST"]
+    "allow_methods": ["POST", "OPTIONS"]
 }})
 
-@app.route("/api/submit", methods=["POST"])
+@app.route("/api/submit", methods=["POST", "OPTIONS"])
 def handle_query():
     try:
+        #TODO: handle file uploads
         data = request.get_json()
         if not data or 'email' not in data:
             return jsonify({'error': 'Email não fornecido.'}), 400
