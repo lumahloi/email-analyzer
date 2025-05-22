@@ -30,6 +30,7 @@ def handle_query():
             category = predict_category(content)
             item = {
                 'category': category,
+                'content': content,
             }
             if category == "Produtivo":
                 # item['response'] = generate_response(content)
