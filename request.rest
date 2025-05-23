@@ -1,9 +1,0 @@
-POST http://127.0.0.1:5000/api/submit
-Content-Type: multipart/form-data; boundary=boundary
-
---boundary
-Content-Disposition: form-data; name="file"; filename="emails.txt"
-Content-Type: application/txt
-
-< ./backend/src/data/emails.txt
---boundary--
