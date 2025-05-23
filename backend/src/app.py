@@ -1,10 +1,10 @@
+from flask import Flask, jsonify, request, make_response
 from generate_response import generate_response
 from predict_category import predict_category
 from werkzeug.utils import secure_filename
-from flask import Flask, jsonify, request
 from email_content import content_txt
 from flask_cors import CORS
-import os
+import os, xlsxwriter, io
 
 app = Flask(__name__)
 
@@ -26,6 +26,49 @@ CORS(app, resources={
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+
+@app.route("/api/export/<filename>", methods=["POST"])
+def export_analysis(filename):
+    try:
+        data = request.get_json()  # Obter dados do corpo da requisição
+        base_filename = os.path.splitext(filename)[0]
+        print(base_filename)
+        
+        if not data:
+            return jsonify({'status': 'error', 'message': 'Nenhum dado disponível para exportação'}), 404
+        
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output)
+        worksheet = workbook.add_worksheet()
+        
+        headers = ['Ordem', 'Conteúdo', 'Categoria', 'Resposta sugerida']
+        
+        for col, header in enumerate(headers):
+            worksheet.write(0, col, header)
+            
+        for row, item in enumerate(data, start=1):
+            worksheet.write(row, 0, row)
+            worksheet.write(row, 1, item.get('content', ''))
+            worksheet.write(row, 2, item.get('category', ''))
+            worksheet.write(row, 3, item.get('response', 'N/A'))
+        
+        workbook.close()
+        output.seek(0)
+        
+        response = make_response(output.getvalue())
+        response.headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        response.headers['Content-Disposition'] = f'attachment; filename={base_filename}.xlsx'
+        
+        return response
+
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': 'Erro ao gerar arquivo Excel',
+            'details': str(e)
+        }), 500
 
 
 
@@ -96,7 +139,6 @@ def delete_file(filename):
     
     os.remove(filepath)
     return jsonify({'success': True})
-
 
 
 
