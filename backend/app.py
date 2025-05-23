@@ -1,4 +1,5 @@
 from ml_scripts.pre_processing import nltk_data_path
+print(f"✅ Caminho NLTK confirmado: {nltk_data_path}")
 
 from flask import Flask, jsonify, request, make_response
 from generate_response import generate_response
