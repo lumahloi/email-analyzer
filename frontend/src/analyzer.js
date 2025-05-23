@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  loadFileList();
+
   $("#submit-btn").click(function () {
     var inputFile = $("#input-file").prop("files");
 
@@ -31,10 +33,20 @@ $(document).ready(function () {
       data: formData,
       processData: false,
       contentType: false,
+
       success: (response) => {
         hideLoadingModal(loadingInstance);
-        localStorage.setItem("analysis_result", JSON.stringify(response));
-        window.location.href = "analysis.html";
+
+        const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
+
+        allAnalyses[response.filename] = {
+          data: response.data,
+          timestamp: new Date().toISOString()
+        };
+
+        localStorage.setItem('all_analyses', JSON.stringify(allAnalyses));
+        
+        window.location.href = `analysis.html?file=${encodeURIComponent(response.filename)}`;
       },
 
       error: (jqXHR) => {

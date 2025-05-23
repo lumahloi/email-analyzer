@@ -1,7 +1,7 @@
 const targets = [
   document.querySelector("nav.navbar"),
   document.querySelector(".container-fluid.bg-light.p-5.shadow-sm"),
-  document.querySelector(".container-fluid.bg-light.p-5.shadow-sm.mt-5"),
+  ...document.querySelectorAll(".container-fluid.bg-light.p-5.shadow-sm.mt-5"),
   document.querySelectorAll("nav.navbar")[1],
 ];
 

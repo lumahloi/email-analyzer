@@ -1,9 +1,123 @@
 $(document).ready(function () {
-  const raw = localStorage.getItem("analysis_result");
-  const response = JSON.parse(raw);
+  loadFileList();
+  const urlParams = new URLSearchParams(window.location.search);
+  const filename = urlParams.get("file");
 
-  if (!Array.isArray(response) || response.length === 0) {
-    $("#result").html("<tr><td colspan='4'>Nenhum resultado retornado.</td></tr>");
+  if (filename) {
+    checkLocalStorageFirst(filename);
+  } else {
+    handleNoFileSelected();
+  }
+});
+
+function checkLocalStorageFirst(filename) {
+  const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
+  
+  if (allAnalyses[filename]) {
+    renderAnalysis(allAnalyses[filename].data);
+  } else {
+    showLoadingMessage(filename);
+    loadAnalysisFromAPI(filename);
+  }
+}
+
+function showLoadingMessage(filename) {
+  $("#result").html(`
+    <tr>
+      <td colspan='4' class="text-center py-4">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Carregando...</span>
+        </div>
+        <p class="mt-2">Buscando análise para ${filename}</p>
+      </td>
+    </tr>
+  `);
+}
+
+function handleNoFileSelected() {
+  const raw = localStorage.getItem("analysis_result");
+  const response = raw ? JSON.parse(raw) : null;
+
+  if (response) {
+    renderAnalysis(response);
+  } else {
+    $("#result").html(`
+      <tr>
+        <td colspan='4' class="text-center py-4">
+          <div class="alert alert-info">
+            Nenhum resultado disponível. Por favor, envie um arquivo primeiro.
+          </div>
+        </td>
+      </tr>
+    `);
+  }
+}
+
+function loadAnalysisFromAPI(filename) {
+  $.ajax({
+    url: `/api/files/${filename}`,
+    type: "GET",
+    success: function (apiResponse) {
+      if (apiResponse.status === "success") {
+        const allAnalyses =
+          JSON.parse(localStorage.getItem("all_analyses")) || {};
+        const analysis = allAnalyses[filename];
+
+        if (analysis) {
+          renderAnalysis(analysis.data);
+        } else {
+          showNotFoundMessage(
+            filename,
+            "Dados de análise não encontrados localmente"
+          );
+        }
+      } else {
+        showNotFoundMessage(
+          filename,
+          apiResponse.message || "Erro ao carregar análise"
+        );
+      }
+    },
+    error: function (jqXHR) {
+      if (jqXHR.status === 404) {
+        showNotFoundMessage(filename, "Arquivo não encontrado no servidor");
+      } else {
+        showErrorMessage(`Erro ${jqXHR.status} ao carregar análise`);
+      }
+    },
+  });
+}
+
+function showNotFoundMessage(filename, message) {
+  $("#result").html(`
+    <div class="col-md-3 mx-auto text-center">
+      ${message}: <span class="fw-bold">${filename}</span>
+      <a class="mt-2 mb-0 btn btn-secondary" href="index.html" role="button">
+        <i class="bi bi-arrow-left text-light"></i> 
+        Voltar
+      </a>
+    </div>
+  `);
+}
+
+function showErrorMessage(message) {
+  $("#result").html(`
+    <tr>
+      <td colspan='4' class="text-center py-4">
+        <div class="alert alert-danger">
+          <i class="bi bi-exclamation-octagon-fill"></i>
+          ${message}
+        </div>
+      </td>
+    </tr>
+  `);
+}
+
+function renderAnalysis(response) {
+  if (!response || !Array.isArray(response) || response.length === 0) {
+    $("#result").html(
+      "<tr><td colspan='4'>Nenhum resultado retornado.</td></tr>"
+    );
     return;
   }
 
@@ -20,22 +134,37 @@ $(document).ready(function () {
   `;
 
   response.forEach((item, index) => {
-    const hasResponse = item.response && item.response !== `<i class="bi bi-x-circle"></i>`;
+    const hasResponse =
+      item.response && item.response !== `<i class="bi bi-x-circle"></i>`;
     const hasContent = item.content && item.content !== "";
 
     resultHtml += `
       <tr>
         <td>${index + 1}</td>
         <td>
-          ${hasContent ? `<button type="button" class="btn btn-sm btn-outline-secondary hide-content-btn">Ocultar</button>` : ""}
+          ${
+            hasContent
+              ? `<button type="button" class="btn btn-sm btn-outline-secondary hide-content-btn">Ocultar</button>`
+              : ""
+          }
           <span class="content-text">${item.content}</span>
         </td>
         <td>
-          <span style="color: ${item.category === "Produtivo" ? "green" : "#757575"};" class="${item.category === "Produtivo" ? "fw-bold" : ""}">${item.category}</span>
+          <span style="color: ${
+            item.category === "Produtivo" ? "green" : "#757575"
+          };" class="${item.category === "Produtivo" ? "fw-bold" : ""}">${
+      item.category
+    }</span>
         </td>
         <td>
-          ${hasResponse ? `<button type="button" class="btn btn-sm btn-outline-secondary hide-response-btn">Ocultar</button>` : ""}
-          <span class="response-text">${hasResponse ? item.response : `<i class="bi bi-x-circle"></i>`}</span>
+          ${
+            hasResponse
+              ? `<button type="button" class="btn btn-sm btn-outline-secondary hide-response-btn">Ocultar</button>`
+              : ""
+          }
+          <span class="response-text">${
+            hasResponse ? item.response : `<i class="bi bi-x-circle"></i>`
+          }</span>
         </td>
       </tr>
     `;
@@ -55,4 +184,4 @@ $(document).ready(function () {
     span.toggle();
     $(this).text(span.is(":visible") ? "Ocultar" : "Mostrar");
   });
-});
+}
