@@ -1,6 +1,9 @@
 import os
 import nltk
+import json  # Adicionei esta linha
+import re    # Adicionei esta linha pois você usa re.sub()
 
+# Configuração do NLTK
 nltk_data_path = os.path.join(os.path.dirname(__file__), '..', 'nltk_data')
 nltk.data.path.append(nltk_data_path)
 
@@ -35,7 +38,6 @@ def preprocess(email):
         
     return lemmatized_words
 
-
 def create_bow_vector(sentence, vocab):
     vector = [0] * len(vocab)
     
@@ -46,24 +48,15 @@ def create_bow_vector(sentence, vocab):
             
     return vector
 
-
 def create_vocabulary(processed_emails):
     vocabulary = set()
     
     for sentence in processed_emails: vocabulary.update(sentence)
-
     return sorted(list(vocabulary))
 
-
-
+# Carrega os emails - versão corrigida
 with open(json_path, encoding='utf-8') as file:
     emails = json.load(file)
-
-def process_emails(emails):
-    return [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
-
-file.close()
-
-vocabulary = create_vocabulary(process_emails(emails))
-
-bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in process_emails(emails)]
+    # Movemos o processamento para dentro do bloco with
+    vocabulary = create_vocabulary(process_emails(emails))
+    bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in process_emails(emails)]
