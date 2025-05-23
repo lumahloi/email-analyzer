@@ -1,6 +1,0 @@
-DELETE http://localhost:5000/api/files/format_5_1.txt
-
-X-User-ID: user_qk9xs6ikc
-Content-Type: application/json
-
-###
