@@ -5,8 +5,7 @@ $(document).ready(function () {
     showModal('Sessão expirada', 'Por favor, faça upload de um novo arquivo');
     return;
   }
-  
-  loadFileList(userId);
+
 
   const urlParams = new URLSearchParams(window.location.search);
   const filename = urlParams.get("file");

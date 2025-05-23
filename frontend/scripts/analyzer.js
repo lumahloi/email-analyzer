@@ -47,13 +47,6 @@ $(document).ready(function () {
           user_id: userId,
         };
         localStorage.setItem("all_analyses", JSON.stringify(allAnalyses));
-
-        if (typeof loadFileList === "function") {
-          loadFileList(userId);
-        } else {
-          console.error("loadFileList não está definido");
-        }
-
         setTimeout(() => {
           window.location.href = `analysis.html?file=${encodeURIComponent(
             response.filename

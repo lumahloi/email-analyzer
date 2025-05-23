@@ -16,13 +16,10 @@ ALLOWED_EXTENSIONS = {'txt'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-CORS(app, resources={
-    r"/api/*": {
-        "allow_headers": "*",
-        "allow_methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
-        "allow_origins": "*"
-    }
-})
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True,
+     methods=["GET", "POST", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "X-User-ID"])
+
 
 
 
@@ -83,7 +80,7 @@ def list_files():
                 'message': 'user_id não fornecido no cabeçalho',
                 'files': []
             }), 400
-
+            
         user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
 
         if not os.path.exists(user_upload_dir):
@@ -115,8 +112,6 @@ def list_files():
             'message': 'Erro ao listar arquivos',
             'details': str(e)
         }), 500
-
-
 
 
 
@@ -181,18 +176,35 @@ def handle_file(filename):
 
 
     
-@app.route("/api/files/<filename>", methods=["DELETE"])
-def delete_file(filename):
+@app.route("/api/files/<user_id>/<filename>", methods=["DELETE"])
+def delete_file(user_id, filename):
+    if not user_id:
+        return jsonify({'error': 'user_id não fornecido'}), 400
+
     if not allowed_file(filename):
         return jsonify({'error': 'Tipo de arquivo não permitido'}), 400
-    
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(filename))
-    
+
+    user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+    filepath = os.path.join(user_upload_dir, secure_filename(filename))
+    print("Verificando caminho:", filepath)
+
     if not os.path.exists(filepath):
         return jsonify({'error': 'Arquivo não encontrado'}), 404
-    
-    os.remove(filepath)
-    return jsonify({'success': True})
+
+    try:
+        os.remove(filepath)
+        
+        if os.path.exists(user_upload_dir) and not os.listdir(user_upload_dir):
+            try:
+                os.rmdir(user_upload_dir)
+                return jsonify({'success': True, 'message': 'Arquivo excluído e pasta removida por estar vazia'})
+            except Exception as e:
+                return jsonify({'success': True, 'message': 'Arquivo excluído, mas não foi possível remover a pasta vazia', 'details': str(e)})
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'error': 'Erro ao excluir o arquivo', 'details': str(e)}), 500
+
 
 
 
