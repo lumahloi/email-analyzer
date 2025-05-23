@@ -4,9 +4,9 @@ from nltk.corpus import stopwords
 import json, re, os
 import nltk
 
+nltk.data.path.append("nltk_data")
 base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')
-nltk.data.path.append("backend/nltk_data")
 
 def preprocess(email):
     words_in_email = word_tokenize(email.lower())
@@ -47,10 +47,11 @@ def create_vocabulary(processed_emails):
 with open(json_path, encoding='utf-8') as file:
     emails = json.load(file)
 
-processed_emails = [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
+def process_emails(emails):
+    return [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
 
 file.close()
 
-vocabulary = create_vocabulary(processed_emails)
+vocabulary = create_vocabulary(process_emails(emails))
 
-bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in processed_emails]
+bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in process_emails(emails)]
