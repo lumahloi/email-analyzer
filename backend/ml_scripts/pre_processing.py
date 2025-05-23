@@ -2,7 +2,9 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import json, re, os
+import nltk
 
+nltk.download('punkt')
 base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')
 
