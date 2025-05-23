@@ -6,9 +6,6 @@ import re
 nltk_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nltk_data'))
 nltk.data.path.append(nltk_data_path)
 
-print(f"🛠️ NLTK data path: {nltk_data_path}")
-print(f"📁 Conteúdo: {os.listdir(nltk_data_path)}")
-
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
