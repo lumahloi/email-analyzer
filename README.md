@@ -1,73 +1,37 @@
 # Email Analyzer
+[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#) [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#) [![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff)](#) [![jQuery](https://img.shields.io/badge/jQuery-0769AD?logo=jquery&logoColor=fff)](#) [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#) [![Flask](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff)](#) [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](#) [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#) [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://shields.io/)
+
 Você tem uma empresa no setor financeiro e já se sentiu sobrecarregada(o) com uma caixa de entrada cheia de e-mails? Pensando nisso, desenvolvi o **Email Analyzer**, uma aplicação inteligente que automatiza a triagem e resposta de e-mails, oferecendo uma solução prática para aumentar a produtividade. 
+
+## Tecnologias utilizadas
+- **Frontend**: HTML, CSS, JavaScript;
+  - Bootstrap, jQuery.
+- **Backend**: Python;
+  - Flask, NLTK, dotenv, Google Gemini API, sklearn.
+- **Banco de dados**: local storage.
 
 ## Screenshots
 ![Home](./docs/screenshots/home.png)
-![Tela de análise do arquivo](./docs/screenshots/File.png)
+![Tela de análise do arquivo](./docs/screenshots/file.png)
 
 ## Funcionalidades
-A aplicação recebe um arquivo .txt contendo diversos e-mails. A partir desse conteúdo, ela realiza três tarefas principais:
-- Leitura e análise de cada e-mail;
-- Classificação automática dos e-mails em duas categorias:
-  - **Produtivo**: requer atenção ou ação
-  - **Improdutivo**: irrelevante ou sem valor prático
-- Geração de resposta automática para e-mails considerados produtivos, economizando tempo e facilitando a comunicação. 
+A documentação das funcionalidades está disponível [aqui](./docs/funcionalidades.md);
+
+## Estrutura do projeto
+A estrutura do projeto disponível [aqui](./docs/estrutura.md);
 
 ## Como rodar localmente
-Passo a passo de como rodar o projeto localmente na sua máquina.
-
-### Pré-requisitos
-- **Git**: instale a versão mais recente oficial clicando [aqui](https://git-scm.com/downloads);
-- **Python**: instale a versão mais recente oficial clicando [aqui](https://www.python.org/downloads/);
-
-### Instalação
-Primeiro, clone o repositório.
-```bash
-git clone https://github.com/lumahloi/email-analyzer/
-```
-
-Navegue até o diretório ```backend```.
-```bash
-cd backend
-```
-
-Crie o ambiente virtual.
-```bash
-python -m venv venv
-```
-
-Instale as dependências do ``backend``.
-```bash
-pip install -r requirements.txt
-```
-
-### Variáveis de ambiente
-No arquivo ```.env.example``` é possível visualizar as variáveis de ambiente.
-- Crie o arquivo ```.env``` na pasta ```backend``` e atribue valor à variável ```GEMINI_KEY```.
-
-### Rodando localmente
-Abra um terminal e rode o servidor ```frontend``` no diretório ```frontend```.
-```bash
-cd frontend
-python -m http.server 8000
-```
-
-Abra outro terminal e rode o servidor ```backend``` no diretório ```backend```.
-```bash
-cd ../backend
-flask --app app run
-```
-
+O tutorial de como rodar localmente está  disponível [aqui](./docs/run.md);
 
 ## APIs
 A documentação dos endpoints está disponível [aqui](./docs/apis.md);
 
 ## Possíveis melhorias
-- [] Adicionar modais de carregamento;
-- [] Permitir criação de contas;
-- [] Melhorar a categorização dos emails;
-- [] Melhorar as respostas geradas;
-- [] Adicionar mais padrões para o algoritmo de extração dos conteúdos dos emails.
+- [ ] Adicionar modais de carregamento;
+- [ ] Permitir criação de contas;
+- [ ] Melhorar a categorização dos emails;
+- [ ] Melhorar as respostas geradas;
+- [ ] Adicionar mais padrões para o algoritmo de extração dos conteúdos dos emails.
 
 ## Autora
 <img src="https://github.com/lumahloi.png" width="80" align="left"/>
