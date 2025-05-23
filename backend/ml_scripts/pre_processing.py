@@ -1,14 +1,8 @@
+import json, re, os, nltk
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import json, re, os, nltk, zipfile, os
-
-nltk_data_zip = os.path.join(os.path.dirname(__file__), '..', 'nltk_data.zip')
-nltk_data_path = os.path.join(os.path.dirname(__file__), '..', 'nltk_data')
-
-if os.path.exists(nltk_data_zip) and not os.path.exists(nltk_data_path):
-    with zipfile.ZipFile(nltk_data_zip, 'r') as zip_ref:
-        zip_ref.extractall(os.path.dirname(nltk_data_path))
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')
