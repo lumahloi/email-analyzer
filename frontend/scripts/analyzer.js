@@ -12,7 +12,7 @@ $(document).ready(function () {
       return;
     }
 
-    showLoading();
+    showLoadingModal();
 
     const file = inputFile[0];
     if (!file.name.toLowerCase().endsWith(".txt")) {
