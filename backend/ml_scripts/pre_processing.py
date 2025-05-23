@@ -1,9 +1,5 @@
-import os
-import nltk
-import json  # Adicionei esta linha
-import re    # Adicionei esta linha pois você usa re.sub()
+import os,nltk,json,re
 
-# Configuração do NLTK
 nltk_data_path = os.path.join(os.path.dirname(__file__), '..', 'nltk_data')
 nltk.data.path.append(nltk_data_path)
 
@@ -54,9 +50,15 @@ def create_vocabulary(processed_emails):
     for sentence in processed_emails: vocabulary.update(sentence)
     return sorted(list(vocabulary))
 
-# Carrega os emails - versão corrigida
+def process_emails(emails):
+    return [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
+
 with open(json_path, encoding='utf-8') as file:
-    emails = json.load(file)
-    # Movemos o processamento para dentro do bloco with
-    vocabulary = create_vocabulary(process_emails(emails))
-    bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in process_emails(emails)]
+    emails_data = json.load(file)
+    processed_emails = process_emails(emails_data)
+    vocabulary = create_vocabulary(processed_emails)
+    bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in processed_emails]
+
+emails = emails_data
+vocabulary = vocabulary
+bow_vectors = bow_vectors
