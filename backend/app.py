@@ -249,8 +249,8 @@ def handle_query():
                 'content': content,
             }
             if category == "Produtivo":
-                # item['response'] = generate_response(content)
-                item['response'] = 'a'
+                item['response'] = generate_response(content)
+                # item['response'] = 'a'
             response_data.append(item)
 
         file.seek(0)

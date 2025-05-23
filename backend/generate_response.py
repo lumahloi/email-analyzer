@@ -11,7 +11,7 @@ def generate_response(email):
     response = client.models.generate_content(
         model="gemini-2.0-flash",
         config=types.GenerateContentConfig(
-            system_instruction = "Atue como um assistente que gera respostas automáticas para emails de uma empresa do setor financeiro, no setor de suporte lidando diretamente com emails dos clientes. Responda de forma objetiva, formal e direta. Se necessário, analise arquivos anexados. Responda apenas perguntas que são relevantes, caso contrário responda ''",
+            system_instruction = "Gere respostas automáticas para emails de uma empresa do setor financeiro, no setor de suporte lidando diretamente com emails dos clientes. Responda de forma objetiva, formal e direta. Se necessário, analise arquivos anexados. Responda apenas perguntas que são relevantes, caso contrário responda ''. Não insira ao final do e-mail coisas como 'Seu Nome' ou 'Seu Setor' nem nada parecido que possa identificar quem escreveu o e-mail",
             max_output_tokens = 500,
             temperature = 0.6,
         ),
