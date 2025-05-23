@@ -4,9 +4,9 @@ from nltk.corpus import stopwords
 import json, re, os
 import nltk
 
-nltk.download('punkt')
 base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')
+nltk.data.path.append('nltk_data')
 
 def preprocess(email):
     words_in_email = word_tokenize(email.lower())
