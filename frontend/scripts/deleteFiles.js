@@ -2,7 +2,7 @@ function deleteFile(filename) {
   if (!confirm(`Tem certeza que deseja remover ${filename}?`)) return;
   
   $.ajax({
-    url: `http://127.0.0.1:5000/api/files/${filename}`,
+    url: `https://email-analyzer-9x4h.onrender.com/api/files/${filename}`,
     type: 'DELETE',
     success: function() {
       try {

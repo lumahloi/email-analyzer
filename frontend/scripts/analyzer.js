@@ -29,7 +29,7 @@ $(document).ready(function () {
 
     $.ajax({
       type: "POST",
-      url: "http://127.0.0.1:5000/api/submit",
+      url: "https://email-analyzer-9x4h.onrender.com/api/submit",
       data: formData,
       processData: false,
       contentType: false,

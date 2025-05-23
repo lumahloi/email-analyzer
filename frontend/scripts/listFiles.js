@@ -1,6 +1,6 @@
 function loadFileList() {
   $.ajax({
-    url: "http://127.0.0.1:5000/api/files",
+    url: "https://email-analyzer-9x4h.onrender.com/api/files",
     type: "GET",
     success: function (response) {
       const fileList = $("#file-list");
