@@ -36,7 +36,7 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: (response) => {
-        hideLoading();
+        hideLoadingModal();
         if (response.user_id && response.user_id !== userId) {
           userId = response.user_id;
           localStorage.setItem("user_id", userId);
@@ -57,7 +57,7 @@ $(document).ready(function () {
         }, 300);
       },
       error: (jqXHR) => {
-        hideLoading();
+        hideLoadingModal();
         const error = jqXHR.responseJSON || { message: "Erro desconhecido" };
         showModal("Erro", error.message);
       },
