@@ -1,0 +1,29 @@
+Assunto: Solicitação de aumento de limite
+Corpo: Olá, gostaria de solicitar um aumento no limite do meu cartão de crédito. Como devo proceder?
+
+Assunto: Esclarecimento sobre cobrança indevida
+Corpo: Identifiquei uma cobrança que não reconheço na minha fatura. Podem me ajudar a resolver?
+
+Assunto: Atualização de endereço cadastral
+Corpo: Preciso atualizar meu endereço residencial no cadastro. Qual o procedimento?
+
+Assunto: Problema ao acessar o aplicativo
+Corpo: Não estou conseguindo acessar o aplicativo do banco. Aparece uma mensagem de erro. O que devo fazer?
+
+Assunto: Solicitação de extrato bancário
+Corpo: Gostaria de receber o extrato da minha conta referente ao último mês.
+
+Assunto: Feliz aniversário para a equipe!
+Corpo: Parabéns a todos pelo aniversário da empresa! Muito sucesso!
+
+Assunto: Agradecimento pelo atendimento
+Corpo: Gostaria de agradecer pelo excelente atendimento que recebi na última ligação.
+
+Assunto: Confirmação de recebimento de boleto
+Corpo: Apenas confirmando que recebi o boleto enviado ontem. Obrigado.
+
+Assunto: Convite para evento externo
+Corpo: Convido a equipe para participar de um evento sobre educação financeira na próxima semana.
+
+Assunto: Sugestão de melhoria no aplicativo
+Corpo: Gostaria de sugerir a inclusão de novas funcionalidades no aplicativo do banco.

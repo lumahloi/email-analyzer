@@ -9,11 +9,6 @@ $(document).ready(function () {
       return;
     }
 
-    if (!inputFile) {
-      showModal("Aviso", "Nenhum dado encontrado, envie um arquivo com dados válidos.");
-      return;
-    }
-
     var file = inputFile[0];
     var fileName = file.name.toLowerCase();
 
@@ -22,7 +17,7 @@ $(document).ready(function () {
       return;
     }
 
-    const loadingInstance = showLoadingModal();
+    // showLoading();
 
     var formData = new FormData();
     formData.append("file", file);
@@ -33,26 +28,28 @@ $(document).ready(function () {
       data: formData,
       processData: false,
       contentType: false,
-
       success: (response) => {
-        hideLoadingModal(loadingInstance);
-
-        const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
-
+        // hideLoading();
+        const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
         allAnalyses[response.filename] = {
           data: response.data,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         };
-
-        localStorage.setItem('all_analyses', JSON.stringify(allAnalyses));
-        
+        localStorage.setItem("all_analyses", JSON.stringify(allAnalyses));
         window.location.href = `analysis.html?file=${encodeURIComponent(response.filename)}`;
       },
-
       error: (jqXHR) => {
-        hideLoadingModal(loadingInstance);
-        renderError(jqXHR);
-      },
+        // hideLoading();
+        try {
+          const response = jqXHR.responseJSON || JSON.parse(jqXHR.responseText);
+          
+          const errorMessage = response.message || response.error || "Erro desconhecido";
+          
+          showModal("Erro", errorMessage);
+        } catch (e) {
+          showModal("Erro", "Ocorreu um erro inesperado ao processar a resposta.");
+        }
+      }
     });
   });
 });

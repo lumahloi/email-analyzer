@@ -1,0 +1,10 @@
+1. cliente@dominio.com.br - Solicitação de renegociação de dívida  
+2. suporte@softwarefinanceiro.com - Problema técnico no sistema de cobrança  
+3. newsletter@marketingdigital.com - Promoção de curso de investimentos  
+4. parceiro@consultoriacontabil.com - Proposta de parceria comercial  
+5. spam@ofertasdiarias.com - Cupom de desconto em loja não relacionada  
+6. compliance@bancocentral.gov.br - Atualização regulatória para instituições financeiras  
+7. vendas@empresatelemarketing.com - Oferta de lista de leads para cold calling  
+8. rh@financeiraexemplo.com - Candidatura espontânea para vaga de analista  
+9. eventos@congressofinanceiro.org - Convite para palestra sobre mercado de capitais 
+10. promocoes@cartao-de-credito.com - Propaganda de limite adicional sem solicitação 
