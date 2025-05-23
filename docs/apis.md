@@ -1,9 +1,6 @@
 # APIs
 
-
-## POST /api/export/<filename>
-
-### Descrição
+## 1. POST /api/export/<filename>
 Exporta a análise gerada para um arquivo ```.xlsx```.
 
 ### Parâmetros da URL
@@ -21,14 +18,12 @@ Exporta a análise gerada para um arquivo ```.xlsx```.
 ```
 
 ### Resposta
-- Retorna um arquivo .xlsx com os dados estruturados.
+- Retorna um arquivo ```.xlsx``` com os dados estruturados.
 - ```500```: erro interno, com mensagem descritiva.
 
 
 
-## GET /api/files
-
-### Descrição
+## 2. GET /api/files
 Lista os arquivos ```.txt``` enviados por um usuário identificado no cabeçalho.
 
 ### Cabeçalhos
@@ -48,9 +43,7 @@ Lista os arquivos ```.txt``` enviados por um usuário identificado no cabeçalho
 
 
 
-## GET /api/files/<filename>
-
-### Descrição
+## 3. GET /api/files/<filename>
 Lê o conteúdo de um arquivo ```.txt``` do usuário logado.
 
 ### Sessão
@@ -71,9 +64,7 @@ Requer ```user_id``` na sessão.
 
 
 
-# GET e DELETE /api/files/<filename>
-
-### Descrição
+# 4. GET e DELETE /api/files/<filename>
 - ```GET```: retorna o conteúdo de um arquivo.
 - ```DELETE```: deleta o arquivo.
 
@@ -82,8 +73,8 @@ Requer ```user_id``` na sessão.
 
 ### Resposta
 Resposta:
-- ```GET```: JSON com conteúdo do arquivo.
-- ```DELETE```: { "success": true }
+- ```GET```: ```JSON``` com conteúdo do arquivo.
+- ```DELETE```: ```{ "success": true }```
 - ```400```: tipo de arquivo inválido.
 - ```404```: arquivo não encontrado.
 - ```401```: sem sessão.
@@ -91,13 +82,11 @@ Resposta:
 
 
 
-# DELETE /api/files/<user_id>/<filename>
-
-### Descrição
+# 5. DELETE /api/files/<user_id>/<filename>
 Deleta o arquivo do usuário e remove a pasta se estiver vazia.
 
 ### Parâmetros da URL
-- ```user_id```ID do usuário.
+- ```user_id```: ID do usuário.
 - ```filename```: nome do arquivo.
 
 ### Resposta
@@ -112,9 +101,7 @@ Deleta o arquivo do usuário e remove a pasta se estiver vazia.
 
 
 
-# POST /api/submit
-
-### Descrição
+# 6. POST /api/submit
 Recebe um arquivo ```.txt```, processa seu conteúdo em blocos, identifica categoria e resposta, salva localmente, e retorna os resultados.
 
 ### Form-Data
@@ -142,9 +129,7 @@ Recebe um arquivo ```.txt```, processa seu conteúdo em blocos, identifica categ
 - ```400```: erros como arquivo ausente, extensão inválida, conteúdo inválido ou já existente.
 - ```500```: erro interno.
 
-# GET /api/check-session
-
-### Descrição
+# 7. GET /api/check-session
 Verifica se há uma sessão ativa e retorna o ```user_id```.
 
 ### Resposta
@@ -157,9 +142,7 @@ Verifica se há uma sessão ativa e retorna o ```user_id```.
 ```
 
 
-# POST /api/sync-session
-
-### Descrição
+# 8. POST /api/sync-session
 Atualiza ou define  o ```user_id``` na sessão.
 
 ### Body (JSON)
