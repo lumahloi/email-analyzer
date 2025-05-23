@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         localStorage.setItem('all_analyses', JSON.stringify(allAnalyses));
         
-        window.location.href = `analysis.html?file=${encodeURIComponent(response.filename)}`;
+        window.location.href = `pages/analysis.html?file=${encodeURIComponent(response.filename)}`;
       },
 
       error: (jqXHR) => {
