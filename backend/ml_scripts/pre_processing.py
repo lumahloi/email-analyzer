@@ -1,5 +1,18 @@
-import json, re, os, nltk
-nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
+import os
+import nltk
+
+nltk_data_path = os.path.join(os.path.dirname(__file__), 'nltk_data')
+nltk.data.path.append(nltk_data_path)
+
+try:
+    nltk.data.find('corpora/stopwords')
+    nltk.data.find('tokenizers/punkt')
+except LookupError as e:
+    print(f"Erro: {e}")
+    print(f"Paths procurados: {nltk.data.path}")
+    print(f"Conteúdo da pasta nltk_data: {os.listdir(nltk_data_path)}")
+    raise
+
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
