@@ -12,7 +12,7 @@ $(document).ready(function () {
       return;
     }
 
-    showLoadingModal();
+    const modalInstance = showLoadingModal();
 
     const file = inputFile[0];
     if (!file.name.toLowerCase().endsWith(".txt")) {
@@ -36,7 +36,7 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: (response) => {
-        hideLoadingModal();
+        hideLoadingModal(modalInstance);
         if (response.user_id && response.user_id !== userId) {
           userId = response.user_id;
           localStorage.setItem("user_id", userId);
@@ -57,7 +57,7 @@ $(document).ready(function () {
         }, 300);
       },
       error: (jqXHR) => {
-        hideLoadingModal();
+        hideLoadingModal(modalInstance);
         const error = jqXHR.responseJSON || { message: "Erro desconhecido" };
         showModal("Erro", error.message);
       },

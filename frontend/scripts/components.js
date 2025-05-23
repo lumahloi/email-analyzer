@@ -57,3 +57,6 @@ function renderError(jqXHR) {
 
   showModal("Ocorreu um erro", errorMessage);
 }
+
+window.showLoadingModal = showLoadingModal;
+window.hideLoadingModal = hideLoadingModal;
