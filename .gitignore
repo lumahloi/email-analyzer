@@ -2,4 +2,5 @@ venv/
 __pycache__/
 .env
 requirements.md
-.rest
+*.rest
+*.txt
