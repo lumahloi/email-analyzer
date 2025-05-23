@@ -1,11 +1,13 @@
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import json, re, os
-import nltk
+import json, re, os, nltk
 
-nltk.data.path.append("nltk_data")
+nltk_data_path = os.path.join(os.path.dirname(__file__), 'nltk_data')
+nltk.data.path.append(nltk_data_path) 
+
 base_dir = os.path.dirname(os.path.abspath(__file__))
+
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')
 
 def preprocess(email):
