@@ -1,9 +1,16 @@
-function loadFileList(userId) {
+$(document).ready(function () {
+  const userId = localStorage.getItem("user_id");
+
+  const apiUrl =
+    location.hostname === "localhost"
+      ? "http://localhost:5000/api/files"
+      : "https://email-analyzer-9x4h.onrender.com/api/files";
+
   $.ajax({
-    url: "https://email-analyzer-9x4h.onrender.com/api/files",
+    url: apiUrl,
     type: "GET",
     headers: {
-      'X-User-ID': userId 
+      "X-User-ID": userId,
     },
     success: function (response) {
       const fileList = $("#file-list");
@@ -13,7 +20,8 @@ function loadFileList(userId) {
         if (response.files && response.files.length > 0) {
           const listGroup = $('<div class="list-group"></div>');
 
-          const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
+          const allAnalyses =
+            JSON.parse(localStorage.getItem("all_analyses")) || {};
           const userAnalyses = Object.entries(allAnalyses)
             .filter(([_, analysis]) => analysis.user_id === userId)
             .map(([filename, _]) => filename);
@@ -42,6 +50,7 @@ function loadFileList(userId) {
 
           $(".delete-file").click(function () {
             const filename = $(this).data("filename");
+            const userId = localStorage.getItem("user_id");
             deleteFile(filename, userId);
           });
 
@@ -51,13 +60,13 @@ function loadFileList(userId) {
         } else {
           fileList.html(`Nenhum arquivo enviado ainda`);
         }
+      } else {
+        alert("Erro ao carregar arquivos: " + response.message);
       }
     },
-    error: function (jqXHR) {
-      console.error("Erro na requisição:", jqXHR);
-      if (jqXHR.status !== 404) {
-        renderError(jqXHR);
-      }
+    error: function (error) {
+      console.error("Erro na requisição:", error);
+      alert("Erro ao carregar arquivos.");
     },
   });
-}
+});

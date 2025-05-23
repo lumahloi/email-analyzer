@@ -1,6 +1,4 @@
 from ml_scripts.pre_processing import nltk_data_path
-print(f"✅ Caminho NLTK confirmado: {nltk_data_path}")
-
 from flask import Flask, jsonify, request, make_response, session
 from generate_response import generate_response
 from predict_category import predict_category
@@ -10,6 +8,7 @@ import os, xlsxwriter, io, uuid
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24).hex()
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'txt'}
@@ -17,13 +16,10 @@ ALLOWED_EXTENSIONS = {'txt'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-CORS(app, resources={
-    r"/api/*": {
-        "allow_headers": "*",
-        "allow_methods": ["GET", "POST", "DELETE", "OPTIONS", "PUT"],
-        "allow_origins": "*"
-    }
-})
+CORS(app, resources={r"/api/*": {"origins": "*"}}, supports_credentials=True,
+     methods=["GET", "POST", "DELETE", "OPTIONS"],
+     allow_headers=["Content-Type", "X-User-ID"])
+
 
 
 
@@ -77,22 +73,23 @@ def export_analysis(filename):
 @app.route("/api/files", methods=["GET"])
 def list_files():
     try:
-        if 'user_id' not in session:
+        user_id = request.headers.get("X-User-ID")
+        if not user_id:
             return jsonify({
-                'status': 'success',
-                'message': 'Nenhum arquivo encontrado',
+                'status': 'error',
+                'message': 'user_id não fornecido no cabeçalho',
                 'files': []
-            })
-
-        user_id = session['user_id']
+            }), 400
+            
         user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
-        
-        if not os.path.exists(UPLOAD_FOLDER):
-            os.makedirs(UPLOAD_FOLDER)
+
+        if not os.path.exists(user_upload_dir):
+            os.makedirs(user_upload_dir)
             return jsonify({
                 'status': 'success',
                 'message': 'Nenhum arquivo encontrado',
-                'files': []
+                'files': [],
+                'user_id': user_id
             })
 
         files = []
@@ -105,7 +102,8 @@ def list_files():
 
         return jsonify({
             'status': 'success',
-            'files': files
+            'files': files,
+            'user_id': user_id
         })
 
     except Exception as e:
@@ -119,25 +117,34 @@ def list_files():
 
 @app.route("/api/files/<filename>", methods=["GET"])
 def get_file(filename):
-    if not allowed_file(filename):
-        return jsonify({'error': 'Tipo de arquivo não permitido'}), 400
+    try:
+        if 'user_id' not in session:
+            return jsonify({'status': 'error', 'message': 'Usuário não autenticado'}), 401
+            
+        user_id = session['user_id']
+        user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+        filepath = os.path.join(user_upload_dir, filename)
+        
+        if not os.path.exists(filepath):
+            return jsonify({'status': 'error', 'message': 'Arquivo não encontrado'}), 404
+            
+        with open(filepath, 'r') as f:
+            contents = f.read()
+            
+        return jsonify({
+            'status': 'success',
+            'filename': filename,
+            'contents': contents
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': 'Erro ao ler arquivo',
+            'details': str(e)
+        }), 500   
     
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(filename))
-    
-    if not os.path.exists(filepath):
-        return jsonify({'error': 'Arquivo não encontrado'}), 404
-    
-    with open(filepath, 'r') as f:
-        content = f.read()
-    
-    return jsonify({
-        'status': 'success',
-        'name': filename,
-        'content': open(filepath, 'r').read(),
-        'message': 'Arquivo encontrado'
-    })
-    
-    
+
 
 @app.route("/api/files/<filename>", methods=["GET", "DELETE"])
 def handle_file(filename):
@@ -169,18 +176,35 @@ def handle_file(filename):
 
 
     
-@app.route("/api/files/<filename>", methods=["DELETE"])
-def delete_file(filename):
+@app.route("/api/files/<user_id>/<filename>", methods=["DELETE"])
+def delete_file(user_id, filename):
+    if not user_id:
+        return jsonify({'error': 'user_id não fornecido'}), 400
+
     if not allowed_file(filename):
         return jsonify({'error': 'Tipo de arquivo não permitido'}), 400
-    
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(filename))
-    
+
+    user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+    filepath = os.path.join(user_upload_dir, secure_filename(filename))
+    print("Verificando caminho:", filepath)
+
     if not os.path.exists(filepath):
         return jsonify({'error': 'Arquivo não encontrado'}), 404
-    
-    os.remove(filepath)
-    return jsonify({'success': True})
+
+    try:
+        os.remove(filepath)
+        
+        if os.path.exists(user_upload_dir) and not os.listdir(user_upload_dir):
+            try:
+                os.rmdir(user_upload_dir)
+                return jsonify({'success': True, 'message': 'Arquivo excluído e pasta removida por estar vazia'})
+            except Exception as e:
+                return jsonify({'success': True, 'message': 'Arquivo excluído, mas não foi possível remover a pasta vazia', 'details': str(e)})
+        
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'error': 'Erro ao excluir o arquivo', 'details': str(e)}), 500
+
 
 
 
@@ -188,35 +212,34 @@ def delete_file(filename):
 def handle_query():
     try:
         if 'file' not in request.files:
-            return jsonify({'status': 'error', 'message': 'Arquivo TXT não fornecido, tente novamente.'}), 400
-        
-        if 'user_id' not in session:
-            session['user_id'] = str(uuid.uuid4())
+            return jsonify({'status': 'error', 'message': 'Arquivo TXT não fornecido'}), 400
 
         file = request.files['file']
         
-        user_id = session['user_id']
-        user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
-        os.makedirs(user_upload_dir, exist_ok=True)
-
         if file.filename == '':
             return jsonify({'status': 'error', 'message': 'Nome do arquivo vazio, tente novamente.'}), 400
-        
+            
         filename = secure_filename(file.filename)
-        filepath = os.path.join(user_upload_dir, filename)
-
+        
         if not filename.lower().endswith('.txt'):
             return jsonify({'status': 'error', 'message': 'Apenas arquivos com extensão .txt são permitidos.'}), 400
-
-        if os.path.exists(filepath):
-            return jsonify({
-                'status': 'error',
-                'message': f"Já existe um arquivo com o nome <span class='fw-bold'>{filename}</span> no servidor. Renomeie o arquivo e tente novamente."
-            }), 400
 
         contents = content_txt(file)
         if not contents:
             return jsonify({'status': 'error', 'message': 'O arquivo está vazio ou não contém dados válidos.'}), 400
+
+        if 'user_id' not in session:
+            frontend_user_id = request.form.get('user_id')
+            session['user_id'] = frontend_user_id if frontend_user_id else str(uuid.uuid4())
+            
+        user_id = session['user_id']
+        user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+        os.makedirs(user_upload_dir, exist_ok=True)
+
+        filepath = os.path.join(user_upload_dir, filename)
+        
+        if os.path.exists(filepath):
+            return jsonify({'status': 'error', 'message': 'Arquivo já existe'}), 400
 
         response_data = []
         for content in contents:
@@ -238,7 +261,8 @@ def handle_query():
             'file_url': f"/api/files/{filename}",
             'data': response_data,
             'filename': filename,
-            'message': 'Análise concluída com sucesso'
+            'user_id': user_id, 
+            'message': 'Análise concluída'
         }), 200
 
     except Exception as e:
@@ -247,6 +271,29 @@ def handle_query():
             'status': 'error',
             'message': 'Erro interno do servidor',
             'details': str(e)
-        }), 500 
+        }), 500
         
         
+
+@app.route("/api/check-session", methods=["GET"])
+def check_session():
+    return jsonify({
+        'status': 'success',
+        'user_id': session.get('user_id'),
+        'authenticated': 'user_id' in session
+    }), 200
+    
+    
+
+@app.route("/api/sync-session", methods=["POST"])
+def sync_session():
+    try:
+        data = request.get_json()
+        if not data or 'user_id' not in data:
+            return jsonify({'status': 'error', 'message': 'user_id não fornecido'}), 400
+            
+        session['user_id'] = data['user_id']
+        return jsonify({'status': 'success', 'user_id': session['user_id']}), 200
+        
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
