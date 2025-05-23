@@ -1,7 +1,27 @@
+import os
+import nltk
+import json
+import re
+
+nltk_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nltk_data'))
+nltk.data.path.append(nltk_data_path)
+
+print(f"🛠️ NLTK data path: {nltk_data_path}")
+print(f"📁 Conteúdo: {os.listdir(nltk_data_path)}")
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    print("⚠️ Punkt não encontrado, tentando download...")
+    try:
+        nltk.download('punkt', download_dir=nltk_data_path)
+    except Exception as e:
+        print(f"❌ Falha no download: {e}")
+    raise
+
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import json, re, os
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(base_dir, '..', 'data', 'example_emails.json')

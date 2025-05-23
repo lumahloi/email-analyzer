@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <!-- animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <!-- bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <!-- css -->
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body class=" bg-success bg-gradient">
+  <div class="container-fluid p-0 m-0">
+    <nav class="navbar navbar-expand-lg mx-auto">
+      <div class="container-fluid mx-auto">
+        <a class="navbar-brand mx-auto" href="index.html">
+          <h3 class="fw-bold text-white mx-auto mt-4 mb-3">Email Analyzer</h3>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container-fluid bg-light p-5 shadow-sm">
+      <h2 class="fw-bold text-center">Analisar outro arquivo</h2>
+      <p class="text-body-secondary text-center">Só aceitamos arquivos <span class="font-monospace">.txt</span></p>
+
+      <div class="row justify-content-center align-items-end mt-5">
+        <div class="col-md-4">
+          <input class="form-control form-control-md" type="file" id="input-file" accept="application/txt">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-danger btn-md" id="submit-btn">Analisar</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="container-fluid bg-light p-5 shadow-sm mt-5">
+      <div class="row">
+        <div class="col-md-2" id="show-export-button">
+        </div>
+      </div>
+      <table id="result" class="table table-hover table-striped table-transparent"></table>
+    </div>
+
+    <div class="container-fluid bg-light p-5 shadow-sm mt-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+          <h4 class="fw-bold">Arquivos enviados</h4>
+          <div id="file-list" class="mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg mt-4 mb-3">
+      <div class="container-fluid">
+        <div class="w-100 text-center">
+          <h6 class="text-white mb-0">
+            © 2025 Email Analyzer. Todos os direitos reservados. Feito por
+            <a href="#" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+              Lumah Pereira
+            </a>.
+          </h6>
+        </div>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- error modal -->
+  <div class="modal fade" id="errorModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-title"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="placeholder">Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- loading modal -->
+  <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static"
+    data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center">
+        <div class="modal-body">
+          <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;"></div>
+          <p class="mt-3">Carregando...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../scripts/components.js"></script>
+  <script src="../scripts/deleteFiles.js"></script>
+  <script src="../scripts/listFiles.js"></script>
+  <script src="../scripts/analysis.js"></script>
+  <script src="../scripts/analyzer.js"></script>
+
+  <!-- bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"
+    integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

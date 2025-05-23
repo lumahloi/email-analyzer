@@ -11,6 +11,12 @@ function deleteFile(filename) {
         localStorage.setItem('all_analyses', JSON.stringify(allAnalyses));
         
         showToast('success', `Arquivo ${filename} removido com sucesso`);
+
+          const urlParams = new URLSearchParams(window.location.search);
+          const filenameWithExtension = urlParams.get("file");
+        if(filenameWithExtension == filename){
+          window.location.href = `index.html`;
+        }
       } catch (e) {
         console.error("Erro ao atualizar localStorage:", e);
         showToast('warning', 'Arquivo removido do servidor mas ocorreu um erro ao atualizar o histórico local');

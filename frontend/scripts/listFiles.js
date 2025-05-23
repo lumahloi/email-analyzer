@@ -13,7 +13,7 @@ function loadFileList() {
           response.files.forEach((file) => {
             listGroup.append(`
               <div class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="pages/analysis.html?file=${encodeURIComponent(
+                <a href="analysis.html?file=${encodeURIComponent(
                   file.name
                 )}" class="text-decoration-none">
                   <i class="bi bi-file-text me-2"></i>
