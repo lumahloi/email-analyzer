@@ -3,23 +3,22 @@ import nltk
 import json
 import re
 
-# Configuração explícita do caminho NLTK
-nltk_data_path = os.path.join(os.path.dirname(__file__), '..', 'nltk_data')
+nltk_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nltk_data'))
 nltk.data.path.append(nltk_data_path)
 
-# Verificação dos recursos
+print(f"🛠️ NLTK data path: {nltk_data_path}")
+print(f"📁 Conteúdo: {os.listdir(nltk_data_path)}")
+
 try:
     nltk.data.find('tokenizers/punkt')
-    nltk.data.find('corpora/stopwords')
-    nltk.data.find('corpora/wordnet')
-except LookupError as e:
-    print("❌ Erro ao carregar recursos NLTK:")
-    print(f"Caminho configurado: {nltk_data_path}")
-    print(f"Conteúdo da pasta: {os.listdir(nltk_data_path)}")
-    print(f"Paths procurados: {nltk.data.path}")
+except LookupError:
+    print("⚠️ Punkt não encontrado, tentando download...")
+    try:
+        nltk.download('punkt', download_dir=nltk_data_path)
+    except Exception as e:
+        print(f"❌ Falha no download: {e}")
     raise
 
-# Restante do seu código...
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
