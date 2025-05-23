@@ -1,0 +1,62 @@
+E-mail 1:
+Assunto: Dúvida sobre extrato da conta XXXXXX
+Conteúdo: Prezado suporte, gostaria de esclarecer uma inconsistência que notei no meu extrato de abril, referente à transação de R$ 250,00 no dia 15/04. Poderiam verificar?
+---
+
+E-mail 2:
+Assunto: Solicitação de alteração de endereço - CPF XXXXXXXXX-XX
+Conteúdo: Bom dia, por favor, atualizem meu endereço residencial para Rua das Flores, 123, Apto 45, Bairro Jardim, Cidade Nova, CEP 98765-432. Anexei comprovante de residência.
+
+---
+
+E-mail 3:
+Assunto: Elogio ao atendimento da Sra. Ana
+Conteúdo: Gostaria de registrar meu agradecimento pelo excelente atendimento que recebi da Sra. Ana hoje pela manhã. Ela foi muito atenciosa e resolveu meu problema rapidamente.
+
+---
+
+E-mail 4:
+Assunto: Dúvida sobre investimento em CDB - Conta YYYYYYYY
+Conteúdo: Olá, estou interessado em aplicar em CDB. Vocês poderiam me enviar mais informações sobre as taxas e prazos disponíveis atualmente?
+
+
+---
+
+E-mail 5:
+Assunto: Boas Festas!
+Conteúdo: Desejo a toda a equipe um Feliz Natal e um próspero Ano Novo!
+
+
+---
+
+E-mail 6:
+Assunto: Problema para acessar o internet banking
+Conteúdo: Não estou conseguindo fazer login no internet banking. A mensagem de erro que aparece é "usuário ou senha inválidos", mas tenho certeza que meus dados estão corretos.
+
+
+---
+
+E-mail 7:
+Assunto: Sugestão para o aplicativo
+Conteúdo: Achei que seria útil adicionar a função de agendamento de TED no aplicativo. Fica a sugestão.
+
+
+---
+
+E-mail 8:
+Assunto: Pergunta sobre limite do cartão de crédito - Final ZZZZ
+Conteúdo: Boa tarde, gostaria de saber se é possível solicitar um aumento no limite do meu cartão de crédito. Qual o procedimento?
+
+
+---
+
+E-mail 9:
+Assunto: Teste
+Conteúdo: Olá, este é um e-mail de teste. Por favor, desconsiderar.
+
+
+---
+
+E-mail 10:
+Assunto: Reclamação sobre cobrança indevida - Conta WWWWWW
+Conteúdo: Recebi uma cobrança de R$ 50,00 referente a "manutenção de conta" que não reconheço. Minha conta é isenta de tarifas. Poderiam verificar e estornar o valor?

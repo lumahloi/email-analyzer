@@ -1,0 +1,29 @@
+Assunto: Problema com pagamento da fatura  
+Descrição: Cliente relata um erro ao tentar pagar a fatura e solicita suporte imediato.  
+
+Assunto: Atualização de dados cadastrais  
+Descrição: Cliente solicita alteração de endereço ou telefone vinculado à conta bancária.  
+
+Assunto: Cobrança indevida no cartão de crédito  
+Descrição: Cliente informa que houve uma cobrança desconhecida e pede análise da situação.  
+
+Assunto: Sugestão de melhoria no aplicativo  
+Descrição: Cliente sugere uma nova funcionalidade para tornar o app mais eficiente.  
+
+Assunto: Esqueci minha senha  
+Descrição: Cliente não consegue acessar a conta e pede ajuda para redefinir a senha.  
+
+Assunto: Oferta de serviço de marketing  
+Descrição: Empresa externa envia proposta comercial para promover os serviços bancários.  
+
+Assunto: Convite para evento do setor financeiro  
+Descrição: Empresa convida a equipe de suporte para um evento, sem necessidade de resposta urgente.  
+
+Assunto: Parabenização pelo atendimento  
+Descrição: Cliente envia elogio ao suporte, sem solicitar nenhuma ação específica.  
+
+Assunto: Mensagem automática de férias  
+Descrição: Cliente informa que estará ausente, sem necessidade de resposta da equipe.  
+
+Assunto: Divulgação de novo curso financeiro  
+Descrição: Instituição educacional compartilha informações sobre um curso pago.  

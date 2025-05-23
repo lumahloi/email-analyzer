@@ -22,5 +22,5 @@ accuracy = accuracy_score(y_test, predictions)
 # print("\nRelatório de Classificação:")
 # print(classification_report(y_test, predictions))
 
-joblib.dump(model, 'backend/src/models/ml_model.pkl')
-joblib.dump(vocabulary, 'backend/src/models/vocabulary.pkl')
+joblib.dump(model, 'models/ml_model.pkl')
+joblib.dump(vocabulary, 'models/vocabulary.pkl')

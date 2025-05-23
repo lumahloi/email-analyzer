@@ -10,6 +10,15 @@ $(document).ready(function () {
   }
 });
 
+function renderExportBtn() {
+  $("#show-export-button").html(`
+    <button class="btn btn-success btn-md" id="btn-export">
+      <i class="bi bi-table text-light"></i>
+      Exportar
+    </button>
+  `);
+}
+
 function checkLocalStorageFirst(filename) {
   const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
 
@@ -44,9 +53,7 @@ function handleNoFileSelected() {
     $("#result").html(`
       <tr>
         <td colspan='4' class="text-center py-4">
-          <div class="alert alert-info">
-            Nenhum resultado disponível. Por favor, envie um arquivo primeiro.
-          </div>
+          Nenhum resultado disponível. Por favor, envie um arquivo primeiro.
         </td>
       </tr>
     `);
@@ -120,6 +127,8 @@ function renderAnalysis(response) {
     );
     return;
   }
+
+  renderExportBtn();
 
   let resultHtml = `
     <thead>
