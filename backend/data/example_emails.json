@@ -27,7 +27,7 @@
     {
       "Assunto": "Confirmação de reunião agendada",
       "Corpo": "Gostaria de confirmar a reunião marcada para amanhã às 15h. Está tudo certo?",
-      "Categoria": "Produtivo"
+      "Categoria": "Improdutivo"
     },
     {
       "Assunto": "Solicitação de extrato bancário",
@@ -256,8 +256,8 @@
     },
     {
       "Assunto": "Feedback sobre novo sistema",
-      "Corpo": "O que você achou da nova interface do internet banking?",
-      "Categoria": "Improdutivo"
+      "Corpo": "Feedback sobre novo sistema",
+      "Categoria": "Produtivo"
     },
     {
       "Assunto": "Aviso de ausência",
@@ -541,7 +541,7 @@
     },
     {
       "Assunto": "Feedback sobre atendimento",
-      "Corpo": "Como você avalia o atendimento recebido hoje? (1 a 5)",
+      "Corpo": "Feedback sobre atendimento",
       "Categoria": "Improdutivo"
     },
     {
@@ -573,5 +573,205 @@
       "Assunto": "Comunicado sobre mudança de endereço",
       "Corpo": "Informamos que nossa agência mudará de endereço no próximo mês.",
       "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Cupom de desconto em loja não relacionada",
+      "Corpo": "Cupom de desconto em loja não relacionada",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Propaganda de limite adicional sem solicitação de-credito.com",
+      "Corpo": "Propaganda de limite adicional sem solicitação de-credito.com",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Olá, gostaria de confirmar se vocês receberam o nosso último boletim informativo.",
+      "Corpo": "Olá, gostaria de confirmar se vocês receberam o nosso último boletim informativo.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Favor revisar os dados do cliente XPTO para aprovação de crédito até o fim do dia.",
+      "Corpo": "Favor revisar os dados do cliente XPTO para aprovação de crédito até o fim do dia.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Favor validar os valores da planilha de despesas e confirmar se estão corretos.",
+      "Corpo": "Favor validar os valores da planilha de despesas e confirmar se estão corretos.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Preciso da sua aprovação para seguir com a proposta comercial enviada ontem.",
+      "Corpo": "Preciso da sua aprovação para seguir com a proposta comercial enviada ontem.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Mandei este e-mail apenas para confirmar o recebimento da fatura, obrigado.",
+      "Corpo": "Mandei este e-mail apenas para confirmar o recebimento da fatura, obrigado.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Confirmo recebimento",
+      "Corpo": "Confirmo recebimento",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Recebido",
+      "Corpo": "Recebido",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Problema para acessar o internet banking Não estou conseguindo fazer login no internet banking. A mensagem de erro que aparece é 'usuário ou senha inválidos', mas tenho certeza que meus dados estão corretos.",
+      "Corpo": "Problema para acessar o internet banking Não estou conseguindo fazer login no internet banking. A mensagem de erro que aparece é 'usuário ou senha inválidos', mas tenho certeza que meus dados estão corretos.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema ao acessar",
+      "Corpo": "Problema ao acessar",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Erro ao acessar",
+      "Corpo": "Erro ao acessar",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Não consigo abrir",
+      "Corpo": "Não consigo abrir",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Mensagem de erro",
+      "Corpo": "Mensagem de erro",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Desconsidere",
+      "Corpo": "Desconsidere",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Por favor desconsiderar",
+      "Corpo": "Por favor desconsiderar",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Olá, este é um e-mail de teste. Por favor, desconsiderar.",
+      "Corpo": "Olá, este é um e-mail de teste. Por favor, desconsiderar.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Problema com pagamento da fatura Cliente relata um erro ao tentar pagar a fatura e solicita suporte imediato.",
+      "Corpo": "Problema com pagamento da fatura Cliente relata um erro ao tentar pagar a fatura e solicita suporte imediato.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Problema",
+      "Corpo": "Problema",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Relata erro",
+      "Corpo": "Relata erro",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Atualização de dados cadastrais",
+      "Corpo": "Atualização de dados cadastrais",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "solicita alteração de endereço ou telefone vinculado à conta bancária",
+      "Corpo": "solicita alteração de endereço ou telefone vinculado à conta bancária",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Sugestão de melhoria no aplicativo",
+      "Corpo": "Sugestão de melhoria no aplicativo",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Empresa externa envia proposta comercial para promover os serviços bancários",
+      "Corpo": "Empresa externa envia proposta comercial para promover os serviços bancários",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Convite para evento do setor financeiro Empresa convida a equipe de suporte para um evento, sem necessidade de resposta urgente.",
+      "Corpo": "Convite para evento do setor financeiro Empresa convida a equipe de suporte para um evento, sem necessidade de resposta urgente.",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Confirmação de recebimento de boleto Apenas confirmando que recebi o boleto enviado ontem. Obrigado.",
+      "Corpo": "Confirmação de recebimento de boleto Apenas confirmando que recebi o boleto enviado ontem. Obrigado.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Encaminho documentação pendente para o fechamento do contrato com o cliente ABC.",
+      "Corpo": "Encaminho documentação pendente para o fechamento do contrato com o cliente ABC.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Este é um lembrete automático sobre a atualização de senha do sistema interno.",
+      "Corpo": "Este é um lembrete automático sobre a atualização de senha do sistema interno.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Favor validar os valores da planilha de despesas e confirmar se estão corretos.",
+      "Corpo": "Favor validar os valores da planilha de despesas e confirmar se estão corretos.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Preciso da sua aprovação para seguir com a proposta comercial enviada ontem.",
+      "Corpo": "Preciso da sua aprovação para seguir com a proposta comercial enviada ontem.",
+      "Categoria": "Improdutivo"
+    },
+    {
+      "Assunto": "Vi que vocês têm uma nova promoção de investimentos. Podem me mandar mais detalhes?",
+      "Corpo": "Vi que vocês têm uma nova promoção de investimentos. Podem me mandar mais detalhes?",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Quero mais detalhes",
+      "Corpo": "Quero mais detalhes",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Quero mais informações",
+      "Corpo": "Quero mais informações",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Quero ajuda",
+      "Corpo": "Quero ajuda",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Proposta de parceria comercial",
+      "Corpo": "Proposta de parceria comercial",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Esqueci minha senha",
+      "Corpo": "Esqueci minha senha",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Esqueci a senha",
+      "Corpo": "Esqueci a senha",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Trocar senha",
+      "Corpo": "Trocar senha",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Me ajuda",
+      "Corpo": "Me ajuda",
+      "Categoria": "Produtivo"
+    },
+    {
+      "Assunto": "Cliente não consegue acessar a conta e pede ajuda para redefinir a senha.",
+      "Corpo": "Cliente não consegue acessar a conta e pede ajuda para redefinir a senha.",
+      "Categoria": "Produtivo"
     }
 ]

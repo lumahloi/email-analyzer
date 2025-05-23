@@ -1,5 +1,4 @@
 from ml_scripts.pre_processing import nltk_data_path
-print(f"✅ Caminho NLTK confirmado: {nltk_data_path}")
 
 from flask import Flask, jsonify, request, make_response
 from generate_response import generate_response
@@ -37,7 +36,6 @@ def export_analysis(filename):
     try:
         data = request.get_json() 
         base_filename = os.path.splitext(filename)[0]
-        print(base_filename)
         
         if not data:
             return jsonify({'status': 'error', 'message': 'Nenhum dado disponível para exportação'}), 404
@@ -167,7 +165,8 @@ def handle_query():
                 'content': content,
             }
             if category == "Produtivo":
-                item['response'] = generate_response(content)
+                # item['response'] = generate_response(content)
+                item['response'] = 'a'
             response_data.append(item)
 
         response = jsonify(response_data)
