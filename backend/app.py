@@ -32,7 +32,7 @@ def allowed_file(filename):
 @app.route("/api/export/<filename>", methods=["POST"])
 def export_analysis(filename):
     try:
-        data = request.get_json()  # Obter dados do corpo da requisição
+        data = request.get_json() 
         base_filename = os.path.splitext(filename)[0]
         print(base_filename)
         
@@ -164,8 +164,7 @@ def handle_query():
                 'content': content,
             }
             if category == "Produtivo":
-                # item['response'] = generate_response(content)
-                item['response'] = 'a'
+                item['response'] = generate_response(content)
             response_data.append(item)
 
         response = jsonify(response_data)
