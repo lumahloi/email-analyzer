@@ -62,7 +62,7 @@ function handleNoFileSelected() {
 
 function loadAnalysisFromAPI(filename) {
   $.ajax({
-    url: `/api/files/${filename}`,
+    url: `https://email-analyzer-9x4h.onrender.com/api/files/${filename}`,
     type: "GET",
     success: function (apiResponse) {
       if (apiResponse.status === "success") {
@@ -215,7 +215,7 @@ $("#btn-export").click(function () {
   }
 
   $.ajax({
-    url: `http://127.0.0.1:5000/api/export/${filenameWithExtension}`,
+    url: `https://email-analyzer-9x4h.onrender.com/api/export/${filenameWithExtension}`,
     type: 'POST',
     contentType: 'application/json',
     data: JSON.stringify(analysisData),

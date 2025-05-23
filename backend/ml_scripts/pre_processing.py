@@ -6,14 +6,19 @@ import re
 nltk_data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nltk_data'))
 nltk.data.path.append(nltk_data_path)
 
+print(f"🛠️ NLTK data path: {nltk_data_path}")
+print(f"📁 Conteúdo: {os.listdir(nltk_data_path)}")
+
 try:
     nltk.data.find('tokenizers/punkt')
 except LookupError:
+    print("⚠️ Punkt não encontrado, tentando download...")
     try:
         nltk.download('punkt', download_dir=nltk_data_path)
     except Exception as e:
         print(f"❌ Falha no download: {e}")
     raise
+
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
@@ -37,7 +42,6 @@ def preprocess(email):
         
     return lemmatized_words
 
-
 def create_bow_vector(sentence, vocab):
     vector = [0] * len(vocab)
     
@@ -48,23 +52,21 @@ def create_bow_vector(sentence, vocab):
             
     return vector
 
-
 def create_vocabulary(processed_emails):
     vocabulary = set()
     
     for sentence in processed_emails: vocabulary.update(sentence)
-
     return sorted(list(vocabulary))
 
-
+def process_emails(emails):
+    return [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
 
 with open(json_path, encoding='utf-8') as file:
-    emails = json.load(file)
+    emails_data = json.load(file)
+    processed_emails = process_emails(emails_data)
+    vocabulary = create_vocabulary(processed_emails)
+    bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in processed_emails]
 
-processed_emails = [preprocess(email['Assunto'] + " " + email['Corpo']) for email in emails]
-
-file.close()
-
-vocabulary = create_vocabulary(processed_emails)
-
-bow_vectors = [create_bow_vector(sentence, vocabulary) for sentence in processed_emails]
+emails = emails_data
+vocabulary = vocabulary
+bow_vectors = bow_vectors
