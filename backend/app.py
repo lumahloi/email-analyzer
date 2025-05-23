@@ -147,17 +147,30 @@ def delete_file(filename):
 def handle_query():
     try:
         if 'file' not in request.files:
-            return jsonify({'error': 'Arquivo TXT não fornecido, tente novamente.'}), 400
+            return jsonify({'status': 'error', 'message': 'Arquivo TXT não fornecido, tente novamente.'}), 400
 
         file = request.files['file']
 
         if file.filename == '':
-            return jsonify({'error': 'Nome do arquivo vazio, tente novamente.'}), 400
+            return jsonify({'status': 'error', 'message': 'Nome do arquivo vazio, tente novamente.'}), 400
+        
+        filename = secure_filename(file.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
+        if not filename.lower().endswith('.txt'):
+            return jsonify({'status': 'error', 'message': 'Apenas arquivos com extensão .txt são permitidos.'}), 400
+
+        if os.path.exists(filepath):
+            return jsonify({
+                'status': 'error',
+                'message': f"Já existe um arquivo com o nome <span class='fw-bold'>{filename}</span> no servidor. Renomeie o arquivo e tente novamente."
+            }), 400
 
         contents = content_txt(file)
+        if not contents:
+            return jsonify({'status': 'error', 'message': 'O arquivo está vazio ou não contém dados válidos.'}), 400
 
         response_data = []
-        
         for content in contents:
             category = predict_category(content)
             item = {
@@ -169,14 +182,7 @@ def handle_query():
                 item['response'] = 'a'
             response_data.append(item)
 
-        response = jsonify(response_data)
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        
-        filename = secure_filename(file.filename)
-        
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        
+        file.seek(0)
         file.save(filepath)
 
         return jsonify({
@@ -188,8 +194,11 @@ def handle_query():
         }), 200
 
     except Exception as e:
+        app.logger.error(f"Erro ao processar arquivo: {str(e)}")
         return jsonify({
             'status': 'error',
             'message': 'Erro interno do servidor',
             'details': str(e)
-        }), 500
+        }), 500    
+        
+        
