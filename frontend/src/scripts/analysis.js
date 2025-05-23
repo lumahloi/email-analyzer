@@ -12,7 +12,7 @@ $(document).ready(function () {
 
 function checkLocalStorageFirst(filename) {
   const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
-  
+
   if (allAnalyses[filename]) {
     renderAnalysis(allAnalyses[filename].data);
   } else {
@@ -185,3 +185,58 @@ function renderAnalysis(response) {
     $(this).text(span.is(":visible") ? "Ocultar" : "Mostrar");
   });
 }
+
+$("#btn-export").click(function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const filenameWithExtension = urlParams.get("file");
+  
+  if (!filenameWithExtension) {
+    showModal('Erro', 'Nenhum arquivo selecionado para exportação');
+    return;
+  }
+
+  const filenameWithoutExtension = filenameWithExtension.replace(/\.txt$/i, '');
+  
+  const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
+  const analysisData = allAnalyses[filenameWithExtension]?.data;
+  
+  if (!analysisData) {
+    showModal('Erro', 'Dados não encontrados para exportação');
+    return;
+  }
+
+  $.ajax({
+    url: `http://127.0.0.1:5000/api/export/${filenameWithExtension}`,
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(analysisData),
+    xhrFields: {
+      responseType: 'blob'
+    },
+    success: function(data, textStatus, jqXHR) {
+      const contentType = jqXHR.getResponseHeader('Content-Type');
+      const contentDisposition = jqXHR.getResponseHeader('Content-Disposition');
+      
+      let downloadFilename = `${filenameWithoutExtension}.xlsx`;
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="?(.+)"?/);
+        if (match) downloadFilename = match[1];
+      }
+      
+      const blob = new Blob([data], {type: contentType});
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = downloadFilename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+    },
+    error: function(jqXHR) {
+      renderError(jqXHR);
+    }
+  });
+});
