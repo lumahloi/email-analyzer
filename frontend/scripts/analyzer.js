@@ -1,5 +1,11 @@
 $(document).ready(function () {
-  loadFileList();
+  let userId = localStorage.getItem('user_id');
+  if (!userId) {
+    userId = 'user_' + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem('user_id', userId);
+  }
+
+  loadFileList(userId); 
 
   $("#submit-btn").click(function () {
     var inputFile = $("#input-file").prop("files");
@@ -17,10 +23,9 @@ $(document).ready(function () {
       return;
     }
 
-    // showLoading();
-
     var formData = new FormData();
     formData.append("file", file);
+    formData.append("user_id", userId); 
 
     $.ajax({
       type: "POST",
@@ -29,22 +34,19 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: (response) => {
-        // hideLoading();
         const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
         allAnalyses[response.filename] = {
           data: response.data,
           timestamp: new Date().toISOString(),
+          user_id: userId 
         };
         localStorage.setItem("all_analyses", JSON.stringify(allAnalyses));
         window.location.href = `analysis.html?file=${encodeURIComponent(response.filename)}`;
       },
       error: (jqXHR) => {
-        // hideLoading();
         try {
           const response = jqXHR.responseJSON || JSON.parse(jqXHR.responseText);
-          
           const errorMessage = response.message || response.error || "Erro desconhecido";
-          
           showModal("Erro", errorMessage);
         } catch (e) {
           showModal("Erro", "Ocorreu um erro inesperado ao processar a resposta.");

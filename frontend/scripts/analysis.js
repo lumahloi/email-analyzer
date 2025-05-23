@@ -1,9 +1,17 @@
 $(document).ready(function () {
-  loadFileList();
+  const userId = localStorage.getItem('user_id') || 'unknown';
+  loadFileList(userId);
+  
   const urlParams = new URLSearchParams(window.location.search);
   const filename = urlParams.get("file");
 
   if (filename) {
+    const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
+    if (allAnalyses[filename] && allAnalyses[filename].user_id !== userId) {
+      showNotFoundMessage(filename, "Você não tem permissão para acessar este arquivo");
+      return;
+    }
+    
     checkLocalStorageFirst(filename);
   } else {
     handleNoFileSelected();
@@ -196,6 +204,7 @@ function renderAnalysis(response) {
 }
 
 $("#btn-export").click(function () {
+  const userId = localStorage.getItem('user_id');
   const urlParams = new URLSearchParams(window.location.search);
   const filenameWithExtension = urlParams.get("file");
   
@@ -204,25 +213,26 @@ $("#btn-export").click(function () {
     return;
   }
 
-  const filenameWithoutExtension = filenameWithExtension.replace(/\.txt$/i, '');
-  
   const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
   const analysisData = allAnalyses[filenameWithExtension]?.data;
   
-  if (!analysisData) {
-    showModal('Erro', 'Dados não encontrados para exportação');
+  if (!analysisData || allAnalyses[filenameWithExtension].user_id !== userId) {
+    showModal('Erro', 'Você não tem permissão para exportar este arquivo');
     return;
   }
 
   $.ajax({
     url: `https://email-analyzer-9x4h.onrender.com/api/export/${filenameWithExtension}`,
     type: 'POST',
+    headers: {
+      'X-User-ID': userId 
+    },
     contentType: 'application/json',
     data: JSON.stringify(analysisData),
     xhrFields: {
       responseType: 'blob'
     },
-    success: function(data, textStatus, jqXHR) {
+    success: function(data, jqXHR) {
       const contentType = jqXHR.getResponseHeader('Content-Type');
       const contentDisposition = jqXHR.getResponseHeader('Content-Disposition');
       

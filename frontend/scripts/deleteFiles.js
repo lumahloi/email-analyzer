@@ -1,9 +1,12 @@
-function deleteFile(filename) {
+function deleteFile(filename, userId) {
   if (!confirm(`Tem certeza que deseja remover ${filename}?`)) return;
   
   $.ajax({
     url: `https://email-analyzer-9x4h.onrender.com/api/files/${filename}`,
     type: 'DELETE',
+    headers: {
+      'X-User-ID': userId
+    },
     success: function() {
       try {
         const allAnalyses = JSON.parse(localStorage.getItem('all_analyses')) || {};
@@ -12,8 +15,8 @@ function deleteFile(filename) {
         
         showToast('success', `Arquivo ${filename} removido com sucesso`);
 
-          const urlParams = new URLSearchParams(window.location.search);
-          const filenameWithExtension = urlParams.get("file");
+        const urlParams = new URLSearchParams(window.location.search);
+        const filenameWithExtension = urlParams.get("file");
         if(filenameWithExtension == filename){
           window.location.href = `index.html`;
         }
@@ -22,7 +25,7 @@ function deleteFile(filename) {
         showToast('warning', 'Arquivo removido do servidor mas ocorreu um erro ao atualizar o histórico local');
       }
       
-      loadFileList();
+      loadFileList(userId);
     },
     error: function(jqXHR) {
       console.error("Erro ao deletar:", jqXHR);
@@ -31,7 +34,7 @@ function deleteFile(filename) {
         if (allAnalyses[filename]) {
           delete allAnalyses[filename];
           localStorage.setItem('all_analyses', JSON.stringify(allAnalyses));
-          loadFileList();
+          loadFileList(userId);
           showToast('info', 'Arquivo não encontrado no servidor, mas foi removido do histórico local');
         } else {
           renderError(jqXHR);
@@ -41,22 +44,4 @@ function deleteFile(filename) {
       }
     }
   });
-}
-
-function showToast(type, message) {
-  const toast = $(`
-    <div class="toast align-items-center text-white bg-${type} border-0" role="alert">
-      <div class="d-flex">
-        <div class="toast-body">
-          ${message}
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-      </div>
-    </div>
-  `);
-  
-  $('#toast-container').append(toast);
-  new bootstrap.Toast(toast[0]).show();
-  
-  setTimeout(() => toast.remove(), 5000);
 }

@@ -1,13 +1,13 @@
 from ml_scripts.pre_processing import nltk_data_path
 print(f"✅ Caminho NLTK confirmado: {nltk_data_path}")
 
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, session
 from generate_response import generate_response
 from predict_category import predict_category
 from werkzeug.utils import secure_filename
 from email_content import content_txt
+import os, xlsxwriter, io, uuid
 from flask_cors import CORS
-import os, xlsxwriter, io
 
 app = Flask(__name__)
 
@@ -77,6 +77,16 @@ def export_analysis(filename):
 @app.route("/api/files", methods=["GET"])
 def list_files():
     try:
+        if 'user_id' not in session:
+            return jsonify({
+                'status': 'success',
+                'message': 'Nenhum arquivo encontrado',
+                'files': []
+            })
+
+        user_id = session['user_id']
+        user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+        
         if not os.path.exists(UPLOAD_FOLDER):
             os.makedirs(UPLOAD_FOLDER)
             return jsonify({
@@ -86,7 +96,7 @@ def list_files():
             })
 
         files = []
-        for filename in os.listdir(UPLOAD_FOLDER):
+        for filename in os.listdir(user_upload_dir):
             if allowed_file(filename):
                 files.append({
                     'name': filename,
@@ -128,6 +138,36 @@ def get_file(filename):
     })
     
     
+
+@app.route("/api/files/<filename>", methods=["GET", "DELETE"])
+def handle_file(filename):
+    if 'user_id' not in session:
+        return jsonify({'error': 'Usuário não identificado'}), 401
+        
+    if not allowed_file(filename):
+        return jsonify({'error': 'Tipo de arquivo não permitido'}), 400
+    
+    user_id = session['user_id']
+    user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+    filepath = os.path.join(user_upload_dir, secure_filename(filename))
+    
+    if not os.path.exists(filepath):
+        return jsonify({'error': 'Arquivo não encontrado'}), 404
+    
+    if request.method == 'GET':
+        with open(filepath, 'r') as f:
+            content = f.read()
+        return jsonify({
+            'status': 'success',
+            'name': filename,
+            'content': content,
+            'message': 'Arquivo encontrado'
+        })
+    elif request.method == 'DELETE':
+        os.remove(filepath)
+        return jsonify({'success': True})
+
+
     
 @app.route("/api/files/<filename>", methods=["DELETE"])
 def delete_file(filename):
@@ -149,14 +189,21 @@ def handle_query():
     try:
         if 'file' not in request.files:
             return jsonify({'status': 'error', 'message': 'Arquivo TXT não fornecido, tente novamente.'}), 400
+        
+        if 'user_id' not in session:
+            session['user_id'] = str(uuid.uuid4())
 
         file = request.files['file']
+        
+        user_id = session['user_id']
+        user_upload_dir = os.path.join(app.config['UPLOAD_FOLDER'], user_id)
+        os.makedirs(user_upload_dir, exist_ok=True)
 
         if file.filename == '':
             return jsonify({'status': 'error', 'message': 'Nome do arquivo vazio, tente novamente.'}), 400
         
         filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        filepath = os.path.join(user_upload_dir, filename)
 
         if not filename.lower().endswith('.txt'):
             return jsonify({'status': 'error', 'message': 'Apenas arquivos com extensão .txt são permitidos.'}), 400
@@ -200,6 +247,6 @@ def handle_query():
             'status': 'error',
             'message': 'Erro interno do servidor',
             'details': str(e)
-        }), 500    
+        }), 500 
         
         
