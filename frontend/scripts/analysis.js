@@ -6,7 +6,6 @@ $(document).ready(function () {
     return;
   }
 
-
   const urlParams = new URLSearchParams(window.location.search);
   const filename = urlParams.get("file");
 
@@ -109,7 +108,7 @@ function loadAnalysisFromAPI(filename) {
     type: "GET",
     url: apiUrl,
     success: function (apiResponse) {
-      handleUploadSuccess(apiResponse);
+      renderAnalysis(apiResponse);
     },
     error: function (jqXHR) {
       if (jqXHR.status === 404) {
@@ -223,10 +222,11 @@ function renderAnalysis(response) {
   });
 }
 
-$("#btn-export").click(function () {
+$(document).on("click", "#btn-export", function () {
   const userId = localStorage.getItem("user_id");
   const urlParams = new URLSearchParams(window.location.search);
   const filenameWithExtension = urlParams.get("file");
+  console.log('click')
 
   if (!filenameWithExtension) {
     showModal("Erro", "Nenhum arquivo selecionado para exportação");
@@ -261,8 +261,9 @@ $("#btn-export").click(function () {
     success: function (data, jqXHR) {
       const contentType = jqXHR.getResponseHeader("Content-Type");
       const contentDisposition = jqXHR.getResponseHeader("Content-Disposition");
-
+      const filenameWithoutExtension = filenameWithExtension.replace(/\.[^/.]+$/, "");
       let downloadFilename = `${filenameWithoutExtension}.xlsx`;
+
       if (contentDisposition) {
         const match = contentDisposition.match(/filename="?(.+)"?/);
         if (match) downloadFilename = match[1];
