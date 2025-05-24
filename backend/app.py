@@ -1,9 +1,10 @@
 from ml_scripts.pre_processing import nltk_data_path
 from flask import Flask, jsonify, request, make_response, session
-from generate_response import generate_response
+# from generate_response import generate_response
 from predict_category import predict_category
 from werkzeug.utils import secure_filename
 from email_content import content_txt
+from query_openai import query_openai
 import os, xlsxwriter, io, uuid
 from flask_cors import CORS
 
@@ -249,8 +250,9 @@ def handle_query():
                 'content': content,
             }
             if category == "Produtivo":
-                item['response'] = generate_response(content)
-                # item['response'] = 'a'
+                # item['response'] = generate_response(content)
+                item['response'] = query_openai(content)
+                item['response'] = 'a'
             response_data.append(item)
 
         file.seek(0)

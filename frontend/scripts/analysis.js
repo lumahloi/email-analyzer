@@ -1,11 +1,10 @@
 $(document).ready(function () {
-  const userId = localStorage.getItem('user_id');
+  const userId = localStorage.getItem("user_id");
 
   if (!userId) {
-    showModal('Sessão expirada', 'Por favor, faça upload de um novo arquivo');
+    showModal("Sessão expirada", "Por favor, faça upload de um novo arquivo");
     return;
   }
-
 
   const urlParams = new URLSearchParams(window.location.search);
   const filename = urlParams.get("file");
@@ -24,15 +23,6 @@ $(document).ready(function () {
     handleNoFileSelected();
   }
 });
-
-function renderExportBtn() {
-  $("#show-export-button").html(`
-    <button class="btn btn-success btn-md" id="btn-export">
-      <i class="bi bi-table text-light"></i>
-      Exportar
-    </button>
-  `);
-}
 
 function verifySession(callback) {
   var apiUrl =
@@ -56,14 +46,14 @@ function checkLocalStorageFirst(filename) {
   const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
 
   if (allAnalyses[filename]) {
-    if (!localStorage.getItem('user_id') && allAnalyses[filename].user_id) {
-      localStorage.setItem('user_id', allAnalyses[filename].user_id);
+    if (!localStorage.getItem("user_id") && allAnalyses[filename].user_id) {
+      localStorage.setItem("user_id", allAnalyses[filename].user_id);
     }
-    
+
     renderAnalysis(allAnalyses[filename].data);
   } else {
     showLoadingMessage(filename);
-    verifySession(function() {
+    verifySession(function () {
       loadAnalysisFromAPI(filename);
     });
   }
@@ -109,7 +99,7 @@ function loadAnalysisFromAPI(filename) {
     type: "GET",
     url: apiUrl,
     success: function (apiResponse) {
-      handleUploadSuccess(apiResponse);
+      renderAnalysis(apiResponse);
     },
     error: function (jqXHR) {
       if (jqXHR.status === 404) {
@@ -153,10 +143,9 @@ function renderAnalysis(response) {
     $("#result").html(
       "<tr><td colspan='4'>Nenhum resultado retornado.</td></tr>"
     );
+    $("#show-export-button").html("");
     return;
   }
-
-  renderExportBtn();
 
   let resultHtml = `
     <thead>
@@ -210,6 +199,16 @@ function renderAnalysis(response) {
   resultHtml += `</tbody>`;
   $("#result").html(resultHtml);
 
+  const params = new URLSearchParams(window.location.search);
+  var filename = params.get("file");
+  filename = filename.replace(/\.txt$/i, "");
+  filename += ".xlsx";
+  $("#show-export-button").html(`
+    <button id="export-button" class="btn btn-success" data-filename="${filename}">
+      Exportar
+    </button>
+  `);
+
   $(".hide-content-btn").click(function () {
     const span = $(this).siblings(".content-text");
     span.toggle();
@@ -223,64 +222,56 @@ function renderAnalysis(response) {
   });
 }
 
-$("#btn-export").click(function () {
-  const userId = localStorage.getItem("user_id");
-  const urlParams = new URLSearchParams(window.location.search);
-  const filenameWithExtension = urlParams.get("file");
+$(document).on("click", "#export-button", function () {
+  const params = new URLSearchParams(window.location.search);
+  var filename =  params.get("file");
+  filename = filename.replace(/\.txt$/i, "");
 
-  if (!filenameWithExtension) {
-    showModal("Erro", "Nenhum arquivo selecionado para exportação");
-    return;
-  }
+  const tableData = [];
+  $("#result tbody tr").each(function () {
+    const content = $(this).find(".content-text").text().trim();
+    const category = $(this).find("td:nth-child(3)").text().trim();
+    const response = $(this).find(".response-text").text().trim();
+    tableData.push({
+      content: content,
+      category: category,
+      response: response,
+    });
+  });
 
-  const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
-  const analysisData = allAnalyses[filenameWithExtension]?.data;
-
-  if (!analysisData || allAnalyses[filenameWithExtension].user_id !== userId) {
-    showModal("Erro", "Você não tem permissão para exportar este arquivo");
+  if (tableData.length === 0) {
+    alert("Nenhum dado disponível para exportação.");
     return;
   }
 
   var apiUrl =
     location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://email-analyzer-9x4h.onrender.com";
-  apiUrl += `/api/export/${filenameWithExtension}`;
+      ? "http://localhost:5000/api/export/" + filename
+      : "https://email-analyzer-9x4h.onrender.com/api/export/" + filename;
 
-  $.ajax({
-    type: "POST",
-    url: apiUrl,
+  fetch(apiUrl, {
+    method: "POST",
     headers: {
-      "X-User-ID": userId,
+      "Content-Type": "application/json",
     },
-    contentType: "application/json",
-    data: JSON.stringify(analysisData),
-    xhrFields: {
-      responseType: "blob",
-    },
-    success: function (data, jqXHR) {
-      const contentType = jqXHR.getResponseHeader("Content-Type");
-      const contentDisposition = jqXHR.getResponseHeader("Content-Disposition");
-
-      let downloadFilename = `${filenameWithoutExtension}.xlsx`;
-      if (contentDisposition) {
-        const match = contentDisposition.match(/filename="?(.+)"?/);
-        if (match) downloadFilename = match[1];
-      }
-
-      const blob = new Blob([data], { type: contentType });
-      const url = URL.createObjectURL(blob);
-
+    body: JSON.stringify(tableData),
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro na exportação");
+      return response.blob();
+    })
+    .then((blob) => {
+      const url = window.URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = downloadFilename;
+      a.download = filename;
       document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    },
-    error: function (jqXHR) {
-      renderError(jqXHR);
-    },
-  });
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    })
+    .catch((error) => {
+      console.error("Erro ao exportar:", error);
+      alert("Falha na exportação. Tente novamente.");
+    });
 });
