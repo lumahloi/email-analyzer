@@ -24,14 +24,14 @@ $(document).ready(function () {
   }
 });
 
-function renderExportBtn() {
-  $("#show-export-button").html(`
-    <button class="btn btn-success btn-md" id="btn-export">
-      <i class="bi bi-table text-light"></i>
-      Exportar
-    </button>
-  `);
-}
+// function renderExportBtn() {
+//   $("#show-export-button").html(`
+//     <button class="btn btn-success btn-md" id="btn-export">
+//       <i class="bi bi-table text-light"></i>
+//       Exportar
+//     </button>
+//   `);
+// }
 
 function verifySession(callback) {
   var apiUrl =
@@ -155,8 +155,6 @@ function renderAnalysis(response) {
     return;
   }
 
-  renderExportBtn();
-
   let resultHtml = `
     <thead>
       <tr>
@@ -222,66 +220,66 @@ function renderAnalysis(response) {
   });
 }
 
-$(document).on("click", "#btn-export", function () {
-  const userId = localStorage.getItem("user_id");
-  const urlParams = new URLSearchParams(window.location.search);
-  const filenameWithExtension = urlParams.get("file");
-  console.log('click')
+// $(document).on("click", "#btn-export", function () {
+//   const userId = localStorage.getItem("user_id");
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const filenameWithExtension = urlParams.get("file");
+//   console.log('click')
 
-  if (!filenameWithExtension) {
-    showModal("Erro", "Nenhum arquivo selecionado para exportação");
-    return;
-  }
+//   if (!filenameWithExtension) {
+//     showModal("Erro", "Nenhum arquivo selecionado para exportação");
+//     return;
+//   }
 
-  const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
-  const analysisData = allAnalyses[filenameWithExtension]?.data;
+//   const allAnalyses = JSON.parse(localStorage.getItem("all_analyses")) || {};
+//   const analysisData = allAnalyses[filenameWithExtension]?.data;
 
-  if (!analysisData || allAnalyses[filenameWithExtension].user_id !== userId) {
-    showModal("Erro", "Você não tem permissão para exportar este arquivo");
-    return;
-  }
+//   if (!analysisData || allAnalyses[filenameWithExtension].user_id !== userId) {
+//     showModal("Erro", "Você não tem permissão para exportar este arquivo");
+//     return;
+//   }
 
-  var apiUrl =
-    location.hostname === "localhost"
-      ? "http://localhost:5000"
-      : "https://email-analyzer-9x4h.onrender.com";
-  apiUrl += `/api/export/${filenameWithExtension}`;
+//   var apiUrl =
+//     location.hostname === "localhost"
+//       ? "http://localhost:5000"
+//       : "https://email-analyzer-9x4h.onrender.com";
+//   apiUrl += `/api/export/${filenameWithExtension}`;
 
-  $.ajax({
-    type: "POST",
-    url: apiUrl,
-    headers: {
-      "X-User-ID": userId,
-    },
-    contentType: "application/json",
-    data: JSON.stringify(analysisData),
-    xhrFields: {
-      responseType: "blob",
-    },
-    success: function (data, jqXHR) {
-      const contentType = jqXHR.getResponseHeader("Content-Type");
-      const contentDisposition = jqXHR.getResponseHeader("Content-Disposition");
-      const filenameWithoutExtension = filenameWithExtension.replace(/\.[^/.]+$/, "");
-      let downloadFilename = `${filenameWithoutExtension}.xlsx`;
+//   $.ajax({
+//     type: "POST",
+//     url: apiUrl,
+//     headers: {
+//       "X-User-ID": userId,
+//     },
+//     contentType: "application/json",
+//     data: JSON.stringify(analysisData),
+//     xhrFields: {
+//       responseType: "blob",
+//     },
+//     success: function (data, jqXHR) {
+//       const contentType = jqXHR.getResponseHeader("Content-Type");
+//       const contentDisposition = jqXHR.getResponseHeader("Content-Disposition");
+//       const filenameWithoutExtension = filenameWithExtension.replace(/\.[^/.]+$/, "");
+//       let downloadFilename = `${filenameWithoutExtension}.xlsx`;
 
-      if (contentDisposition) {
-        const match = contentDisposition.match(/filename="?(.+)"?/);
-        if (match) downloadFilename = match[1];
-      }
+//       if (contentDisposition) {
+//         const match = contentDisposition.match(/filename="?(.+)"?/);
+//         if (match) downloadFilename = match[1];
+//       }
 
-      const blob = new Blob([data], { type: contentType });
-      const url = URL.createObjectURL(blob);
+//       const blob = new Blob([data], { type: contentType });
+//       const url = URL.createObjectURL(blob);
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = downloadFilename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    },
-    error: function (jqXHR) {
-      renderError(jqXHR);
-    },
-  });
-});
+//       const a = document.createElement("a");
+//       a.href = url;
+//       a.download = downloadFilename;
+//       document.body.appendChild(a);
+//       a.click();
+//       document.body.removeChild(a);
+//       URL.revokeObjectURL(url);
+//     },
+//     error: function (jqXHR) {
+//       renderError(jqXHR);
+//     },
+//   });
+// });

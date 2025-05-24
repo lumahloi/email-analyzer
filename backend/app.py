@@ -251,8 +251,8 @@ def handle_query():
             }
             if category == "Produtivo":
                 # item['response'] = generate_response(content)
-                item['response'] = query_openai(content)
-                # item['response'] = 'a'
+                # item['response'] = query_openai(content)
+                item['response'] = 'a'
             response_data.append(item)
 
         file.seek(0)
