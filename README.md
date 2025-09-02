@@ -15,7 +15,7 @@ Do you own a company in the financial sector and have you ever felt overwhelmed 
 ![File analysis screen](./docs/screenshots/file.png)
 
 ## Functionalities
-Feature documentation is available [here](./docs/functionalities.md).
+Feature documentation is available [here](./docs/funcionalidades.md).
 
 ## Structure
 The project structure is available [here](./docs/estrutura.md).
