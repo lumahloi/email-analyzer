@@ -1,54 +1,53 @@
-# Funcionalidades
-## 1. Análise de arquivos .txt
-Usuários podem enviar arquivos .txt contendo conteúdos (como e-mails ou mensagens) para serem analisados.
-Cada conteúdo é processado para:
-- Predição de categoria com ```predict_category()```
-- Geração de resposta automática (se a categoria for "Produtivo") via ```generate_response()```
+# Features
+## 1. .txt file analysis
+Users can submit .txt files containing content (such as emails or messages) for analysis. Each piece of content is processed for:
+- Category prediction with ```predict_category()```
+- Automatic response generation (if the category is "Productive") via ```generate_response()```
 
-![Funcionalidade](./screenshots/f1.png)
+![Functionality](./screenshots/f1.png)
 
-## 2. Upload e Armazenamento de Arquivos por Usuário
-Cada arquivo enviado é armazenado em um diretório separado por usuário (```uploads/<user_id>/```), com controle de sessões (```session['user_id']```), garantindo:
-- Organização por usuário
-- Prevenção de sobrescrita de arquivos existentes
+## 2. Uploading and Storing Files by User
+Each uploaded file is stored in a separate directory per user (```uploads/<user_id>/```), with session control (```session['user_id']```), ensuring:
+- Organization by user
+- Preventing overwriting of existing files
 
-![Funcionalidade](./screenshots/f2.png)
+![Functionality](./screenshots/f2.png)
 
-## 3. Listagem de Arquivos do Usuário
-Os usuários podem:
-- Listar todos os arquivos ```.txt``` que enviaram
-- Ver os nomes e URLs acessíveis dos arquivos
+## 3. User File Listing
+Users can:
+- List all ```.txt``` files they've uploaded
+- View the file names and accessible URLs Files
 
-![Funcionalidade](./screenshots/f3.png)
+![Functionality](./screenshots/f3.png)
 
-## 4. Leitura do Conteúdo dos Arquivos
-Usuários podem visualizar o conteúdo completo de arquivos ```.txt``` já enviados.
+## 4. Reading File Contents
+Users can view the full content of previously uploaded .txt files.
 
-![Funcionalidade](./screenshots/f3.png)
+![Functionality](./screenshots/f3.png)
 
-## 5. Exclusão de Arquivos
-Usuários podem:
-- Excluir arquivos individualmente
-- Remover pastas vazias após a exclusão (automaticamente)
+## 5. Deleting Files
+Users can:
+- Delete files individually
+- Remove empty folders after deletion (automatically)
 
-![Funcionalidade](./screenshots/f4.png)
+![Functionality](./screenshots/f4.png)
 
-## 6. Exportação dos Resultados
-Os resultados da análise (conteúdo, categoria e resposta gerada) podem ser exportados como um arquivo ```.xlsx```, com estrutura pronta para uso em relatórios ou planilhas.
+## 6. Exporting Results
+The analysis results (content, category, and generated response) can be exported as an .xlsx file, with a structure ready for use in reports or spreadsheets.
 
-![Funcionalidade](./screenshots/f5.png)
+![Functionality](./screenshots/f5.png)
 
-## 7. Controle de Sessão e Identificação de Usuário
-O sistema controla os usuários via:
+## 7. Session Control and User Identification
+The system controls users via:
 
-- ```session['user_id']``` (armazenado no servidor)
-- ```X-User-ID``` no cabeçalho ```HTTP``` (cliente pode sincronizar via API)
-- Endpoint para verificar se o usuário está autenticado
+- ```session['user_id']``` (stored on the server)
+- ```X-User-ID``` in the ```HTTP``` header (client can synchronize via API)
+- Endpoint to verify if the user is authenticated
 
-## 8. Suporte a CORS
-A API suporta Cross-Origin Resource Sharing (CORS) para permitir chamadas de clientes frontend hospedados em domínios diferentes.
+## 8. CORS Support
+The API supports Cross-Origin Resource Sharing (CORS) to allow calls from frontend clients hosted on different domains.
 
-## 9. Ocultar/mostrar conteúdo
-Caso o usuário desejar, é possível ocultar os campos ```Conteúdo``` e ```Resposta sugerida``` da análise gerada, para fins organizacionais ou de melhor visualização.
+## 9. Hide/Show Content
+If desired, the user can hide the ```Content``` and ```Suggested Response``` fields in the generated analysis, for organizational purposes or better visualization.
 
-![Funcionalidade](./screenshots/f6.png)
+![Functionality](./screenshots/f6.png)
