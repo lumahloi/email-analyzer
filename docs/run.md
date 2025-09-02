@@ -1,43 +1,39 @@
-# Como rodar localmente
-Passo a passo de como rodar o projeto localmente na sua máquina.
+# How to run locally
+Step-by-step instructions on how to run the project locally on your machine.
 
-## Pré-requisitos
-- **Git**: instale a versão mais recente oficial clicando [aqui](https://git-scm.com/downloads);
-- **Python**: instale a versão mais recente oficial clicando [aqui](https://www.python.org/downloads/);
+## Prerequisites
+- Git: Install the latest official version by clicking [here](https://git-scm.com/downloads);
+- Python: Install the latest official version by clicking [here](https://www.python.org/downloads/);
 
-## Instalação
-Primeiro, clone o repositório.
-```bash
+## Installation
+First, clone the repository.
+bash
 git clone https://github.com/lumahloi/email-analyzer/
-```
 
-Navegue até o diretório ```backend```.
-```bash
+Navigate to the backend directory.
+bash
 cd backend
-```
 
-Crie o ambiente virtual.
-```bash
+Create the virtual environment.
+bash
 python -m venv venv
-```
 
-Instale as dependências do ``backend``.
-```bash
+Install the backend dependencies. ```bash
 pip install -r requirements.txt
 ```
 
-## Variáveis de ambiente
-No arquivo ```.env.example``` é possível visualizar as variáveis de ambiente.
-- Crie o arquivo ```.env``` na pasta ```backend``` e atribue valor à variável ```GEMINI_KEY```.
+## Environment Variables
+In the ```.env.example``` file, you can view the environment variables.
+- Create the ```.env``` file in the ```backend``` folder and assign a value to the ```GEMINI_KEY``` variable.
 
-## Rodando localmente
-Abra um terminal e rode o servidor ```frontend``` no diretório ```frontend```.
+## Running Locally
+Open a terminal and run the ```frontend``` server in the ```frontend``` directory.
 ```bash
 cd frontend
 python -m http.server 8000
 ```
 
-Abra outro terminal e rode o servidor ```backend``` no diretório ```backend```.
+Open another terminal and run the ```backend``` server in the ```backend``` directory.
 ```bash
 cd ../backend
 flask --app app run
