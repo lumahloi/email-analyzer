@@ -1,42 +1,39 @@
 # Email Analyzer
-[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#) [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#) [![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff)](#) [![jQuery](https://img.shields.io/badge/jQuery-0769AD?logo=jquery&logoColor=fff)](#) [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#) [![Flask](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff)](#) [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](#) [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#) [![Website](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://shields.io/)
+[![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?logo=html5&logoColor=white)](#) [![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=fff)](#) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000)](#) [![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff)](#) [![jQuery](https://img.shields.io/badge/jQuery-0769AD?logo=jquery&logoColor=fff)](#) [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff)](#) [![Flask](https://img.shields.io/badge/Flask-000?logo=flask&logoColor=fff)](#) [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-886FBF?logo=googlegemini&logoColor=fff)](#) [![Vercel](https://img.shields.io/badge/Vercel-%23000000.svg?logo=vercel&logoColor=white)](#)
 
-Você tem uma empresa no setor financeiro e já se sentiu sobrecarregada(o) com uma caixa de entrada cheia de e-mails? Pensando nisso, desenvolvi o **Email Analyzer**, uma aplicação inteligente que automatiza a triagem e resposta de e-mails, oferecendo uma solução prática para aumentar a produtividade.
+Do you own a company in the financial sector and have you ever felt overwhelmed by an inbox full of emails? With this in mind, I developed **Email Analyzer**, an intelligent application that automates email sorting and response, offering a practical solution to increase productivity.
 
-## Deploy
-Clique [aqui](https://email-analyzer-eight.vercel.app/) para acessar a aplicação.
-
-## Tecnologias utilizadas
+## Technologies
 - **Frontend**: HTML, CSS, JavaScript;
-  - Bootstrap, jQuery.
+- Bootstrap, jQuery.
 - **Backend**: Python;
-  - Flask, NLTK, dotenv, Google Gemini API, sklearn.
-- **Banco de dados**: local storage.
+- Flask, NLTK, dotenv, Google Gemini API, sklearn.
+- **Database**: local storage.
 
 ## Screenshots
 ![Home](./docs/screenshots/home.png)
-![Tela de análise do arquivo](./docs/screenshots/file.png)
+![File analysis screen](./docs/screenshots/file.png)
 
-## Funcionalidades
-A documentação das funcionalidades está disponível [aqui](./docs/funcionalidades.md).
+## Functionalities
+Feature documentation is available [here](./docs/functionalities.md).
 
-## Estrutura do projeto
-A estrutura do projeto disponível [aqui](./docs/estrutura.md).
+## Structure
+The project structure is available [here](./docs/estrutura.md).
 
-## Como rodar localmente
-O tutorial de como rodar localmente está  disponível [aqui](./docs/run.md).
+## How to Run Locally
+The tutorial on how to run locally is available [here](./docs/run.md).
 
 ## APIs
-A documentação dos endpoints está disponível [aqui](./docs/apis.md).
+Endpoint documentation is available [here](./docs/apis.md).
 
-## Possíveis melhorias
-- [ ] Adicionar modais de carregamento;
-- [ ] Permitir criação de contas;
-- [ ] Melhorar a categorização dos emails;
-- [ ] Melhorar as respostas geradas;
-- [ ] Adicionar mais padrões para o algoritmo de extração dos conteúdos dos emails.
+## Possible Improvements
+- [ ] Add loading modals;
+- [ ] Allow account creation;
+- [ ] Improve email categorization;
+- [ ] Improve generated responses;
+- [ ] Add more patterns for the email content extraction algorithm.
 
-## Autora
+## Author
 <img src="https://github.com/lumahloi.png" width="80" align="left"/>
 
 ***Lumah Pereira***
