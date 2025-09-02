@@ -1,163 +1,147 @@
 # APIs
 
 ## 1. POST /api/export/<filename>
-Exporta a análise gerada para um arquivo ```.xlsx```.
+Exports the generated analysis to an .xlsx file.
 
-### Parâmetros da URL
-- ```filename```: nome do arquivo cuja análise deseja-se exportar.
+### URL Parameters
+- Filename: Name of the file whose analysis you want to export.
 
-### Corpo (JSON)
-```bash
+### Body (JSON)
+bash
 [
-  {
-    "content": "Texto do email",
-    "category": "Categoria prevista",
-    "response": "Resposta sugerida"
-  }
+{
+"content": "Email text",
+"category": "Expected category",
+"response": "Suggested response"
+}
 ]
-```
 
-### Resposta
-- Retorna um arquivo ```.xlsx``` com os dados estruturados.
-- ```500```: erro interno, com mensagem descritiva.
-
-
+### Response
+- Returns an .xlsx file with the structured data.
+- 500: Internal error, with a descriptive message.
 
 ## 2. GET /api/files
-Lista os arquivos ```.txt``` enviados por um usuário identificado no cabeçalho.
+Lists the .txt files uploaded by a user identified in the header.
 
-### Cabeçalhos
-- ```X-User-ID```: identificador do usuário.
+### Headers
+- ```X-User-ID```: User identifier.
 
-### Resposta
+### Response
 ```bash
 {
-  "status": "success",
-  "files": [{"name": "arquivo.txt", "url": "/api/files/arquivo.txt"}],
-  "user_id": "id"
+"status": "success",
+"files": [{"name": "file.txt", "url": "/api/files/file.txt"}],
+"user_id": "id"
 }
 ```
-- ```400```: se o ```X-User-ID``` não for fornecido.
-- ```500```: erro interno.
-
-
-
+- ```400```: If the ```X-User-ID``` is not provided.
+- ```500```: Internal error.
 
 ## 3. GET /api/files/<filename>
-Lê o conteúdo de um arquivo ```.txt``` do usuário logado.
+Reads the contents of a ```.txt``` file of the logged-in user.
 
-### Sessão
-Requer ```user_id``` na sessão.
+### Session
+Requires ```user_id``` in the session.
 
-### Resposta
+### Response
 ```bash
 {
-  "status": "success",
-  "filename": "arquivo.txt",
-  "contents": "conteúdo do arquivo"
+"status": "success",
+"filename": "file.txt",
+"contents": "file contents"
 }
 ```
-- ```401```: usuário não autenticado.
-- ```404```: arquivo não encontrado.
-- ```500```: erro interno.
+- ```401```: User not authenticated.
+- ```404```: File not found.
+- ```500```: Internal error.
 
+# 4. GET and DELETE /api/files/<filename>
+- ```GET```: Returns the contents of a file.
+- ```DELETE```: Deletes the file.
 
+### Session
+Requires ```user_id``` in the session.
 
-
-# 4. GET e DELETE /api/files/<filename>
-- ```GET```: retorna o conteúdo de um arquivo.
-- ```DELETE```: deleta o arquivo.
-
-### Sessão
-Requer ```user_id``` na sessão.
-
-### Resposta
-Resposta:
-- ```GET```: ```JSON``` com conteúdo do arquivo.
+### Response
+Response:
+- ```GET```: ```JSON``` with the file contents.
 - ```DELETE```: ```{ "success": true }```
-- ```400```: tipo de arquivo inválido.
-- ```404```: arquivo não encontrado.
-- ```401```: sem sessão.
-- ```500```: erro interno.
-
-
+- ```400```: Invalid file type.
+- ```404```: File not found.
+- ```401```: No session.
+- ```500```: Internal error.
 
 # 5. DELETE /api/files/<user_id>/<filename>
-Deleta o arquivo do usuário e remove a pasta se estiver vazia.
+Deletes the user's file and removes the folder if it is empty.
 
-### Parâmetros da URL
-- ```user_id```: ID do usuário.
-- ```filename```: nome do arquivo.
+### URL Parameters
+- ```user_id```: User ID.
+- ```filename```: File name.
 
-### Resposta
+### Response
 ```bash
 { "success": true }
 ```
-- Se pasta for removida: inclui mensagem adicional.
-- ```400```: ID ou tipo inválido.
-- ```404```: arquivo não encontrado.
-- ```500```: erro ao excluir.
-
-
-
+- If folder is removed: Include additional message.
+- ```400```: Invalid ID or type.
+- ```404```: file not found.
+- ```500```: error deleting.
 
 # 6. POST /api/submit
-Recebe um arquivo ```.txt```, processa seu conteúdo em blocos, identifica categoria e resposta, salva localmente, e retorna os resultados.
+Receives a ```.txt``` file, processes its content in chunks, identifies the category and response, saves it locally, and returns the results.
 
 ### Form-Data
-- ```file```: arquivo ```.txt```.
-- ```user_id``` (opcional): define o usuário; se ausente, é gerado.
+- ```file```: ```.txt``` file.
+- ```user_id``` (optional): defines the user; if absent, it is generated.
 
-### Resposta
+### Response
 ```bash
 {
-  "status": "success",
-  "file_url": "/api/files/arquivo.txt",
-  "data": [
-    {
-      "category": "Produtivo",
-      "content": "texto",
-      "response": "resposta gerada"
-    }
-  ],
-  "filename": "arquivo.txt",
-  "user_id": "abc123",
-  "message": "Análise concluída"
+"status": "success",
+"file_url": "/api/files/arquivo.txt",
+"data": [
+{
+"category": "Productive",
+"content": "text",
+"response": "generated response"
 }
-
+],
+"filename": "arquivo.txt",
+"user_id": "abc123",
+"message": "Analysis complete"
+}
 ```
-- ```400```: erros como arquivo ausente, extensão inválida, conteúdo inválido ou já existente.
-- ```500```: erro interno.
+- ```400```: errors such as missing file, invalid extension, invalid or existing content.
+- ```500```: internal error.
 
 # 7. GET /api/check-session
-Verifica se há uma sessão ativa e retorna o ```user_id```.
+Checks for an active session and returns the ```user_id```.
 
-### Resposta
+### Response
 ```bash
 {
-  "status": "success",
-  "user_id": "abc123",
-  "authenticated": true
+"status": "success",
+"user_id": "abc123",
+"authenticated": true
 }
 ```
 
-
 # 8. POST /api/sync-session
-Atualiza ou define  o ```user_id``` na sessão.
+Updates or sets the ```user_id``` in the session.
 
 ### Body (JSON)
 ```bash
 {
-  "user_id": "abc123"
+"user_id": "abc123"
 }
 ```
 
-### Resposta
+### Response
 ```bash
 {
-  "status": "success",
-  "user_id": "abc123"
+"status": "success",
+"user_id": "abc123"
 }
 ```
-- ```400```: ```user_id``` não fornecido.
-- ```500```: erro interno.
+- ```400```: ```user_id``` not provided.
+- ```500```: Internal error.
