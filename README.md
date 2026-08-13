@@ -1,4 +1,4 @@
-# Email Analyzer
+# 📫 Analisador de E-mails com Machine Learning
 Você é dono de uma empresa no setor financeiro e já se sentiu sobrecarregado por uma caixa de entrada lotada de e-mails? Pensando nisso, desenvolvi o **Email Analyzer**, um aplicativo inteligente que automatiza a triagem e a resposta de e-mails, oferecendo uma solução prática para aumentar a produtividade.
 
 ## Technologies
